@@ -14,7 +14,7 @@ function App() {
         <Router>
            <Header />
           <Routes>
-            <Route path='/studentProfiles' element />
+            <Route path='/studentProfiles' element = {<StudentProfile/>} />
             <Route path='/companyProfiles' element/>
             <Route path='/announcements'  />
             <Route path='/changepassword' />
