@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer'; 
 import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
+import AnnouncementSection from './pages/AnnouncementSection';
 function App() {
   
   return (
@@ -16,7 +17,8 @@ function App() {
           <Routes>
             <Route path='/studentProfiles' element = {<StudentProfile/>} />
             <Route path='/companyProfiles' element/>
-            <Route path='/announcements'  />
+            <Route path='/StudentAnnouncements' element = {<AnnouncementSection/>} />
+            <Route path='/CompanyAnnouncements' element = {<AnnouncementSection/>} />
             <Route path='/changepassword' />
             <Route path='/logout'  />
           </Routes>
