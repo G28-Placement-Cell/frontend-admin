@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 const StudentCard = ({ student }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, m:3 }}>
       <CardMedia
         component="img"
         height="200"
