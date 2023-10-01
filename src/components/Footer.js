@@ -10,10 +10,10 @@ function Footer() {
             sx={{
                 mt: 'auto',
                 py: 2,
-                backgroundColor: '#212330', // Background color for the footer
-                color: '#fff', // Text color for the footer
-                position: 'fixed',
-                bottom: 0,
+                backgroundColor: '#212330',
+                color: '#fff',
+                // position: 'sticky',
+                // bottom: 0,
                 // marginTop: 100,
                 width: '100%',
             }}
