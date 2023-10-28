@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
 import AnnouncementSection from './pages/AnnouncementSection';
+import ChangePassword from './pages/ChangePassword';
 function App() {
   
   return (
@@ -19,7 +20,7 @@ function App() {
             <Route path='/companyProfiles' element/>
             <Route path='/StudentAnnouncements' element = {<AnnouncementSection/>} />
             <Route path='/CompanyAnnouncements' element = {<AnnouncementSection/>} />
-            <Route path='/changepassword' />
+            <Route path='/changepassword' element={<ChangePassword/>} />
             <Route path='/logout'  />
           </Routes>
           <Footer />
