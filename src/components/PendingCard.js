@@ -11,16 +11,7 @@ const buttons = [
   <Button key="reject">Reject</Button>,
 ];
 
-const StudentCard = ({ student , onReject ,onAccept}) => {
-
-  const handleAcceptClick = () => {
-    onAccept(student);
-  };
-
-  const handleRejectClick = () => {
-    onReject(student);
-  };
-
+const PendingCard = ({student_company}) => {
 
   return (
     <Card
@@ -36,8 +27,8 @@ const StudentCard = ({ student , onReject ,onAccept}) => {
       <CardMedia
         component="img"
         height="180"
-        alt={student.name}
-        image={student.photoUrl}
+        alt={student_company.name}
+        image={student_company.photoUrl}
       />
       <CardContent className="cardContent">
         <Typography
@@ -46,7 +37,7 @@ const StudentCard = ({ student , onReject ,onAccept}) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student.name}
+          {student_company.name}
         </Typography>
         <Button variant="contained" color="primary">
           More Info
@@ -63,4 +54,4 @@ const StudentCard = ({ student , onReject ,onAccept}) => {
   );
 };
 
-export default StudentCard;
+export default PendingCard;
