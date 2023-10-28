@@ -4,24 +4,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Stack from '@mui/material/Stack';
 import { ButtonGroup } from "@mui/material";
 
 const buttons = [
-  <Button key="accept">Accept</Button>,
-  <Button key="reject">Reject</Button>,
+  <Button key="MoreInfo">More Info</Button>,
+  <Button key="Remove">Remove</Button>,
 ];
 
-const StudentCard = ({ student , onReject ,onAccept}) => {
-
-  const handleAcceptClick = () => {
-    onAccept(student);
-  };
-
-  const handleRejectClick = () => {
-    onReject(student);
-  };
-
-
+const AcceptedCard = ({ student_company }) => {
   return (
     <Card
       sx={{
@@ -36,8 +29,8 @@ const StudentCard = ({ student , onReject ,onAccept}) => {
       <CardMedia
         component="img"
         height="180"
-        alt={student.name}
-        image={student.photoUrl}
+        alt={student_company.name}
+        image={student_company.photoUrl}
       />
       <CardContent className="cardContent">
         <Typography
@@ -46,21 +39,26 @@ const StudentCard = ({ student , onReject ,onAccept}) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student.name}
+          {student_company.name}
         </Typography>
-        <Button variant="contained" color="primary">
-          More Info
-        </Button>
-        <ButtonGroup
-          size="medium"
-          variant="outlined"
+        {/* <ButtonGroup
+          size="small"
+          variant="contained"
           style={{ marginTop: "5px", marginLeft: "10px" }}
         >
           {buttons}
-        </ButtonGroup>
+        </ButtonGroup> */}
+        
+          <Button size="medium" variant="contained">
+            More Info
+          </Button>
+          <IconButton aria-label="delete" size="small">
+            <DeleteIcon/>
+          </IconButton>
+      
       </CardContent>
     </Card>
   );
 };
 
-export default StudentCard;
+export default AcceptedCard;
