@@ -9,6 +9,8 @@ import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
 import AnnouncementSection from './pages/AnnouncementSection';
 import ChangePassword from './pages/ChangePassword';
+import RegStudentProfile from './pages/RegStudentProfile';
+import PenCompanyProfile from './pages/PenCompanyProfile';
 function App() {
   
   return (
@@ -16,8 +18,9 @@ function App() {
         <Router>
            <Header />
           <Routes>
-            <Route path='/studentProfiles' element = {<StudentProfile/>} />
-            <Route path='/companyProfiles' element/>
+            <Route path='/PenstudentProfiles' element = {<StudentProfile/>} />
+            <Route path='/RegstudentProfiles' element = {<RegStudentProfile/>} />
+            <Route path='/PencompanyProfiles' element = {<PenCompanyProfile/>}/>
             <Route path='/StudentAnnouncements' element = {<AnnouncementSection/>} />
             <Route path='/CompanyAnnouncements' element = {<AnnouncementSection/>} />
             <Route path='/changepassword' element={<ChangePassword/>} />

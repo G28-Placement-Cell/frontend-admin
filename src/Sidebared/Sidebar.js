@@ -1,46 +1,58 @@
-import React from 'react';
-import * as IoIcons from 'react-icons/io';
-import * as BiIcons from 'react-icons/bi';
+import React from "react";
+import * as IoIcons from "react-icons/io";
+import * as BiIcons from "react-icons/bi";
 import * as TfiIcons from "react-icons/tfi";
-import * as HiIcons from "react-icons/hi"
-import * as RxIcons from "react-icons/rx"
-import * as TbIcons from 'react-icons/tb'
+import * as HiIcons from "react-icons/hi";
+import * as RxIcons from "react-icons/rx";
+import * as TbIcons from "react-icons/tb";
 
 export const SidebarData = [
   {
-    title: 'Student Profiles',
-    path: '/studentProfiles',
+    title: "Registered Student Profiles",
+    path: "/RegstudentProfiles",
     icon: <BiIcons.BiUser />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Company Profiles',
-    path: '/companyProfiles',
+    title: "Pending Student Profiles",
+    path: "/PenstudentProfiles",
     icon: <BiIcons.BiUser />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Student Announcement',
-    path: '/StudentAnnouncements',
+    title: "Registered Company Profiles",
+    path: "/RegcompanyProfiles",
+    icon: <BiIcons.BiUser />,
+    cName: "nav-text",
+  },
+  {
+    title: "Pending Company Profiles",
+    path: "/PencompanyProfiles",
+    icon: <BiIcons.BiUser />,
+    cName: "nav-text",
+  },
+  {
+    title: "Student Announcement",
+    path: "/StudentAnnouncements",
     icon: <TfiIcons.TfiAnnouncement />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: ' Company Announcement',
-    path: '/CompanyAnnouncements',
+    title: " Company Announcement",
+    path: "/CompanyAnnouncements",
     icon: <TfiIcons.TfiAnnouncement />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Change Password',
-    path: '/changepassword',
+    title: "Change Password",
+    path: "/changepassword",
     icon: <TbIcons.TbArrowsExchange />,
-    cName: 'nav-text'
+    cName: "nav-text",
   },
   {
-    title: 'Log out',
-    path: '/logout',
+    title: "Log out",
+    path: "/logout",
     icon: <BiIcons.BiLogOut />,
-    cName: 'nav-text'
-  }
+    cName: "nav-text",
+  },
 ];
