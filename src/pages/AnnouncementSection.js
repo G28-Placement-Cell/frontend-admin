@@ -55,6 +55,7 @@ const AnnouncementSection = ({ title }) => {
         endIcon={<PostAddIcon />}
         onClick={handleSubmitAnnouncement}
         className="button"
+        style={{backgroundColor:'#2B2442'}}
       >
         Post {title} Announcement
       </Button>

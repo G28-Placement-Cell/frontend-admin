@@ -6,46 +6,21 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from '../Sidebared/Sidebar';
 import '../Sidebared/Navbar.css';
 import { IconContext } from 'react-icons';
+import TemporaryDrawer from './Navbar';
 
 function Header() {
-  const [sidebar, setSidebar] = useState(false);
+  // const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  // const showSidebar = () => setSidebar(!sidebar);
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-        <Link to='#' className='menu-bars' style={{ marginLeft:0}}>
-          <FaIcons.FaBars onClick={showSidebar} style={{color:'white', alignSelf:'center', justifySelf:'center', marginBottom:6}} />
-        </Link>
-        <>
-          <IconContext.Provider value={{ color: '#fff' }}>
-
-            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'} style={{}}>
-              <ul className='nav-menu-items' onClick={showSidebar}>
-                <li className='navbar-toggle'>
-                  <Link to='#' className='menu-bars'>
-                    <AiIcons.AiOutlineClose style={{}}/>
-                  </Link>
-                </li>
-                {SidebarData.map((item, index) => {
-                  return (
-                    <li key={index} className={item.cName}>
-                      <Link to={item.path}>
-                        {item.icon}
-                        <span style={{marginLeft:'15px'}}>{item.title}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </IconContext.Provider>
-        </>
+          < TemporaryDrawer />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
-        {/* <Button color="inherit">Contact us</Button>
-        <Button color="inherit">About Us</Button> */}
+        <Button color="inherit" >Contact us</Button>
+        <Button color="inherit" >About Us</Button>
       </Toolbar>
     </AppBar>
   );
