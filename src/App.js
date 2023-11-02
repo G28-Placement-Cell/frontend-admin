@@ -13,6 +13,7 @@ import RegStudentProfile from './pages/RegStudentProfile';
 import PenCompanyProfile from './pages/PenCompanyProfile';
 import AdminLogin from './pages/AdminLogin';
 import { ToastContainer } from 'react-toastify';
+import RegCompanyProfile from './pages/RegCompanyProfiles';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path='/PenstudentProfiles' element={<StudentProfile />} />
             <Route path='/RegstudentProfiles' element={<RegStudentProfile />} />
             <Route path='/PencompanyProfiles' element={<PenCompanyProfile />} />
+            <Route path='/RegcompanyProfiles' element={<RegCompanyProfile />} />
             <Route path='/StudentAnnouncements' element={<AnnouncementSection />} />
             <Route path='/CompanyAnnouncements' element={<AnnouncementSection />} />
             <Route path='/changepassword' element={<ChangePassword />} />
