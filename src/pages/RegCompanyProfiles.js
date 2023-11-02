@@ -1,4 +1,4 @@
-import AcceptedCard from "../components/AcceptedCard";
+import AcceptedCard from "../components/AcceptedCardCompany";
 import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AcceptedCard from "../components/AcceptedCard";
+import AcceptedCard from "../components/AcceptedCardStudent";
 
 function RegStudentProfile() {
   const [regStudentData, setRegStudentData] = useState([]);

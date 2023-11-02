@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../style/studentprofile.css";
-import PendingCard from "../components/PendingCard";
+import PendingCard from "../components/PendingCardCompany";
 
 // const companyData = [
 //   {

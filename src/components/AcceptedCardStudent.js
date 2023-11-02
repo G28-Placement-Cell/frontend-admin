@@ -29,17 +29,17 @@ const AcceptedCard = ({ student_company }) => {
       <CardMedia
         component="img"
         height="180"
-        alt={student_company.companyname}
+        alt={student_company.name}
         image={student_company.photoUrl}
       />
       <CardContent className="cardContent">
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.companyname}
+          {student_company.name}
         </Typography>
         {/* <ButtonGroup
           size="small"

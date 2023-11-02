@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
-import PendingCard from "../components/PendingCard";
+import PendingCard from "../components/PendingCardStudent";
 
 function StudentProfile() {
   const [studentData, setStudentData] = useState([]);

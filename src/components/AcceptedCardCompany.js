@@ -4,15 +4,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Stack from '@mui/material/Stack';
 import { ButtonGroup } from "@mui/material";
 
 const buttons = [
-  <Button key="accept">Accept</Button>,
-  <Button key="reject">Reject</Button>,
+  <Button key="MoreInfo">More Info</Button>,
+  <Button key="Remove">Remove</Button>,
 ];
 
-const PendingCard = ({ student_company }) => {
-
+const AcceptedCard = ({ student_company }) => {
   return (
     <Card
       sx={{
@@ -33,33 +35,30 @@ const PendingCard = ({ student_company }) => {
       <CardContent className="cardContent">
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
           sx={{ textAlign: "center" }}
         >
           {student_company.companyname}
         </Typography>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{ textAlign: "center" }}
-        >
-          {student_company.hrname}
-        </Typography>
-        <Button variant="contained" color="primary">
-          More Info
-        </Button>
-        <ButtonGroup
-          size="medium"
-          variant="outlined"
+        {/* <ButtonGroup
+          size="small"
+          variant="contained"
           style={{ marginTop: "5px", marginLeft: "10px" }}
         >
           {buttons}
-        </ButtonGroup>
+        </ButtonGroup> */}
+
+        <Button size="medium" variant="contained">
+          More Info
+        </Button>
+        <IconButton aria-label="delete" size="small">
+          <DeleteIcon />
+        </IconButton>
+
       </CardContent>
     </Card>
   );
 };
 
-export default PendingCard;
+export default AcceptedCard;
