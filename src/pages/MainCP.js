@@ -50,7 +50,7 @@ function ChangePassword() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button onClick={handleChangePassword}>Change Password</button>
+          <button onClick={handleChangePassword} style={{backgroundColor:'#2B2442'}}>Change Password</button>
           {message && <p className="message">{message}</p>}
         </div>
       </div>

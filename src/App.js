@@ -17,6 +17,7 @@ function App() {
     <>
         <Router>
            <Header />
+           <div style={{minHeight:'84vh'}}>
           <Routes>
             <Route path='/PenstudentProfiles' element = {<StudentProfile/>} />
             <Route path='/RegstudentProfiles' element = {<RegStudentProfile/>} />
@@ -26,6 +27,7 @@ function App() {
             <Route path='/changepassword' element={<ChangePassword/>} />
             <Route path='/logout'  />
           </Routes>
+          </div>
           <Footer />
         </Router>
     </>
