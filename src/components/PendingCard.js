@@ -11,7 +11,7 @@ const buttons = [
   <Button key="reject">Reject</Button>,
 ];
 
-const PendingCard = ({student_company}) => {
+const PendingCard = ({ student_company }) => {
 
   return (
     <Card
@@ -31,6 +31,14 @@ const PendingCard = ({student_company}) => {
         image={student_company.photoUrl}
       />
       <CardContent className="cardContent">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{ textAlign: "center" }}
+        >
+          {student_company.student_id}
+        </Typography>
         <Typography
           gutterBottom
           variant="h5"

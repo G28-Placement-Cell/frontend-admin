@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../slices/adminApislice';
 import { setCredentials } from '../slices/authslice';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 function AdminLogin() {
@@ -48,6 +49,7 @@ function AdminLogin() {
             navigate('/PenstudentProfiles')
         }
         catch (err) {
+            console.log(err);
             toast.error(err?.data?.message || err.error)
         }
     }
