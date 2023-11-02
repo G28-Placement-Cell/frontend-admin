@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AcceptedCard from "../components/AcceptedCard";
 
-const regStudentData = [
+function RegStudentProfile() {
+  const [regStudentData, setRegStudentData] = useState([]);
 
-];
+  useEffect(() => {
+    fetch("http://localhost:8000/api/student/getregstudent", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setRegStudentData(data.regstudent);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-
-function regStudentProfile() {
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          margin: "10px",
-        }}
-      >
-        {regStudentData.map((student, index) => (
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        margin: "10px",
+      }}
+    >
+      {regStudentData && regStudentData.length > 0 ? (
+        regStudentData.map((student, index) => (
           <AcceptedCard key={index} student_company={student} />
-        ))}
-      </div>
-    );
-  }
-  
-  export default regStudentProfile;
+        ))
+      ) : (
+        <p>No data available</p>
+      )}
+    </div>
+  );
+}
+
+export default RegStudentProfile;
