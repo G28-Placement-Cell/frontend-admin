@@ -20,6 +20,7 @@ function App() {
     <>
       <Router>
         <Header />
+           <div style={{minHeight:'84vh'}}>
         <ToastContainer />
         <Routes>
           <Route path='/' element={<AdminLogin />} />
@@ -31,6 +32,7 @@ function App() {
           <Route path='/changepassword' element={<ChangePassword />} />
           <Route path='/logout' />
         </Routes>
+          </div>
         <Footer />
       </Router>
     </>
