@@ -7,8 +7,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer'; 
 import Header from './components/Header';
 import StudentProfile from './pages/StudentProfile';
-import AnnouncementPage from './pages/Announcement';
-
+import AnnouncementSection from './pages/AnnouncementSection';
+import ChangePassword from './pages/ChangePassword';
+import RegStudentProfile from './pages/RegStudentProfile';
+import PenCompanyProfile from './pages/PenCompanyProfile';
 function App() {
   
   return (
@@ -16,10 +18,12 @@ function App() {
         <Router>
            <Header />
           <Routes>
-            <Route path='/studentProfiles' element />
-            <Route path='/companyProfiles' element/>
-            <Route path='/announcements'   element={<AnnouncementPage/>} />
-            <Route path='/changepassword' />
+            <Route path='/PenstudentProfiles' element = {<StudentProfile/>} />
+            <Route path='/RegstudentProfiles' element = {<RegStudentProfile/>} />
+            <Route path='/PencompanyProfiles' element = {<PenCompanyProfile/>}/>
+            <Route path='/StudentAnnouncements' element = {<AnnouncementSection/>} />
+            <Route path='/CompanyAnnouncements' element = {<AnnouncementSection/>} />
+            <Route path='/changepassword' element={<ChangePassword/>} />
             <Route path='/logout'  />
           </Routes>
           <Footer />

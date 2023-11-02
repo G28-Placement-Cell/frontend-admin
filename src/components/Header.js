@@ -12,7 +12,7 @@ function Header() {
 
   const showSidebar = () => setSidebar(!sidebar);
   return (
-    <AppBar position="fixed" style={{ backgroundColor: "#2B2442" }}>
+    <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
         <Link to='#' className='menu-bars' style={{ marginLeft:0}}>
           <FaIcons.FaBars onClick={showSidebar} style={{color:'white', alignSelf:'center', justifySelf:'center', marginBottom:6}} />
@@ -32,7 +32,7 @@ function Header() {
                     <li key={index} className={item.cName}>
                       <Link to={item.path}>
                         {item.icon}
-                        <span>{item.title}</span>
+                        <span style={{marginLeft:'15px'}}>{item.title}</span>
                       </Link>
                     </li>
                   );

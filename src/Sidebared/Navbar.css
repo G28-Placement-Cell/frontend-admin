@@ -2,12 +2,10 @@
     background-color: #2B2442;
     height: 60px;
     display: flex;
-    color: white;
+    color: #2B2442;
     justify-content: start;
     align-items: center;
   }
-
-
   
   .menu-bars {
     margin-left: 2rem;
@@ -36,11 +34,12 @@
   
   .nav-text {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     padding: 8px 0px 8px 16px;
     list-style: none;
     height: 60px;
+    background: #2B2442;
   }
   
   .nav-text a {
@@ -50,18 +49,20 @@
     width: 95%;
     height: 100%;
     display: flex;
+    justify-content: start;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 24px;
     border-radius: 4px;
+    background: #2B2442;
   }
   
   .nav-text a:hover {
-    background-color: #493D72;
+    background-color: #2B2442;
   }
   
   .nav-menu-items {
     width: 100%;
-    color: white;
+    color: #493D72;
   }
   
   .navbar-toggle {
@@ -71,8 +72,4 @@
     display: flex;
     justify-content: start;
     align-items: center;
-  }
-  
-  span {
-    margin-left: 16px;
   }
