@@ -29,7 +29,7 @@ const AcceptedCard = ({ student_company }) => {
       <CardMedia
         component="img"
         height="180"
-        alt={student_company.name}
+        alt={student_company.companyname}
         image={student_company.photoUrl}
       />
       <CardContent className="cardContent">
@@ -39,7 +39,7 @@ const AcceptedCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.name}
+          {student_company.companyname}
         </Typography>
         {/* <ButtonGroup
           size="small"
@@ -48,14 +48,14 @@ const AcceptedCard = ({ student_company }) => {
         >
           {buttons}
         </ButtonGroup> */}
-        
-          <Button size="medium" variant="contained">
-            More Info
-          </Button>
-          <IconButton aria-label="delete" size="small">
-            <DeleteIcon/>
-          </IconButton>
-      
+
+        <Button size="medium" variant="contained">
+          More Info
+        </Button>
+        <IconButton aria-label="delete" size="small">
+          <DeleteIcon />
+        </IconButton>
+
       </CardContent>
     </Card>
   );
