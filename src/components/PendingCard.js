@@ -27,7 +27,7 @@ const PendingCard = ({ student_company }) => {
       <CardMedia
         component="img"
         height="180"
-        alt={student_company.name}
+        alt={student_company.companyname}
         image={student_company.photoUrl}
       />
       <CardContent className="cardContent">
@@ -37,7 +37,7 @@ const PendingCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.student_id}
+          {student_company.companyname}
         </Typography>
         <Typography
           gutterBottom
@@ -45,7 +45,7 @@ const PendingCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.name}
+          {student_company.hrname}
         </Typography>
         <Button variant="contained" color="primary">
           More Info
