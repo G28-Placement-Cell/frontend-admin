@@ -12,9 +12,9 @@ function Footer() {
                 py: 2,
                 backgroundColor: '#212330',
                 color: '#fff',
-                // position: 'sticky',
+                position: 'sticky',
                 // bottom: 0,
-                // marginTop: 100,
+                marginTop: 100,
                 width: '100%',
             }}
         >
