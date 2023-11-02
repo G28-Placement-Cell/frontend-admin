@@ -15,12 +15,14 @@ function Header() {
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-          < TemporaryDrawer />
+        <TemporaryDrawer />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
-        <Button color="inherit" >Contact us</Button>
-        <Button color="inherit" >About Us</Button>
+        <div style={{ display: 'flex', justifyContent: 'inherit' }}>
+          <Button color="inherit" sx={{ minWidth: '8vw' }} >Contact us</Button>
+          <Button color="inherit" >About Us</Button>
+        </div>
       </Toolbar>
     </AppBar>
   );
