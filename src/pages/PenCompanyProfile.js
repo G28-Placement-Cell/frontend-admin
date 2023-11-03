@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 import PendingCard from "../components/PendingCardCompany";
+import { Paper } from "@mui/material";
 
 // const companyData = [
 //   {
@@ -61,6 +62,7 @@ function PenCompanyProfile() {
   }, []);
 
   return (
+    <Paper sx={{ py: 1, px: 3 }} className="container" >
     <div
       style={{
         display: "flex",
@@ -75,6 +77,7 @@ function PenCompanyProfile() {
         <PendingCard key={index} student_company={company} />
       ))}
     </div>
+    </Paper>
   );
 }
 
