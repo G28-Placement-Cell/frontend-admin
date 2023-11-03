@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AcceptedCard from "../components/AcceptedCardStudent";
+import { Paper } from "@mui/material";
 
 function RegStudentProfile() {
   const [regStudentData, setRegStudentData] = useState([]);
@@ -26,24 +27,27 @@ function RegStudentProfile() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        margin: "10px",
-      }}
-    >
-      {loading ? ( // Display a loading message while loading
-        <p>Loading...</p>
-      ) : regStudentData && regStudentData.length > 0 ? (
-        regStudentData.map((student, index) => (
-          <AcceptedCard key={index} student_company={student} />
-        ))
-      ) : (
-        <p>No data available</p>
-      )}
-    </div>
+    <Paper sx={{ py: 1, px: 3 }} className="container" >
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+        {loading ? ( // Display a loading message while loading
+          <p>Loading...</p>
+        ) : regStudentData && regStudentData.length > 0 ? (
+          regStudentData.map((student, index) => (
+            <AcceptedCard key={index} student_company={student} />
+          ))
+        ) : (
+          <p>No data available</p>
+        )}
+      </div>
+    </Paper>
   );
 }
 

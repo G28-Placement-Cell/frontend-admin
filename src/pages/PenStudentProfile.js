@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 import PendingCard from "../components/PendingCardStudent";
 import { useVerifyMutation } from "../slices/adminApislice";
+import { Paper } from "@mui/material";
 
 function StudentProfile() {
   const [studentData, setStudentData] = useState([]);
@@ -30,24 +31,27 @@ function StudentProfile() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        margin: "10px",
-      }}
-    >
-      {loading ? (
-        <p>Loading...</p>
-      ) : studentData && studentData.length > 0 ? (
-        studentData.map((student, index) => (
-          <PendingCard key={index} student_company={student} />
-        ))
-      ) : (
-        <p>No data available</p>
-      )}
-    </div>
+    <Paper sx={{ py: 1, px: 3 }} className="container" >
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+
+        {loading ? (
+          <p>Loading...</p>
+        ) : studentData && studentData.length > 0 ? (
+          studentData.map((student, index) => (
+            <PendingCard key={index} student_company={student} />
+          ))
+        ) : (
+          <p>No data available</p>
+        )}
+      </div>
+    </Paper>
   );
 }
 

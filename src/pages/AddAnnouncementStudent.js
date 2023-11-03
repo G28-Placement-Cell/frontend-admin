@@ -39,7 +39,7 @@ const AddAnnouncement = () => {
         console.log(newAnnouncement);
 
         try {
-            const res = await fetch("http://localhost:8000/api/announcements", {
+            const res = await fetch("http://localhost:8000/api/announcements/admin/student", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -58,6 +58,7 @@ const AddAnnouncement = () => {
             setLoading(false);
             setSuccess(true);
             setError("");
+            navigate("/studentAnnouncements");
         }
         catch (err) {
             setLoading(false);
@@ -73,9 +74,9 @@ const AddAnnouncement = () => {
     }
 
     return (
-        <Paper sx={{ py: 1, px: 3 }} className="container" color="inherit">
+        <Paper sx={{ py: 1, px: 3 }} className="container">
             <Typography variant="h4" sx={{ mt: 3 }} align="center" gutterBottom>
-                Add Announcement
+                Add Announcement for Student
             </Typography>
             <form onSubmit={handleSubmit}>
                 <TextField

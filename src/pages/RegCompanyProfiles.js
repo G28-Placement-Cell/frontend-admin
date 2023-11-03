@@ -1,5 +1,6 @@
 import AcceptedCard from "../components/AcceptedCardCompany";
 import React, { useState, useEffect } from "react";
+import { Paper } from "@mui/material";
 import "../style/studentprofile.css";
 
 function RegCompanyProfile() {
@@ -24,22 +25,24 @@ function RegCompanyProfile() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        margin: "10px",
-      }}
-    >
-      {regCompanyData && regCompanyData.length > 0 ? (
-        regCompanyData.map((company, index) => (
-          <AcceptedCard key={index} student_company={company} />
-        ))
-      ) : (
-        <p>No data available</p>
-      )}
-    </div>
+    <Paper sx={{ py: 1, px: 3 }} className="container" >
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+        {regCompanyData && regCompanyData.length > 0 ? (
+          regCompanyData.map((company, index) => (
+            <AcceptedCard key={index} student_company={company} />
+          ))
+        ) : (
+          <p>No data available</p>
+        )}
+      </div>
+    </Paper>
   );
 }
 
