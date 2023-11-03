@@ -37,8 +37,8 @@ import PendingCard from "../components/PendingCardCompany";
 
 
 function PenCompanyProfile() {
-
   const [companyData, setCompanyData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/company/getpencompany", {
@@ -52,9 +52,11 @@ function PenCompanyProfile() {
       .then((data) => {
         console.log(data);
         setCompanyData(data.company);
+        setLoading(false); // Set loading to false when data is loaded
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false); // Set loading to false in case of an error
       });
   }, []);
 
@@ -67,11 +69,10 @@ function PenCompanyProfile() {
         margin: "10px",
       }}
     >
-      {companyData.map((company, index) => (
-        <PendingCard
-          key={index}
-          student_company={company}
-        />
+      {loading ? ( // Display a loading message while loading
+        <p>Loading...</p>
+      ) : companyData.map((company, index) => (
+        <PendingCard key={index} student_company={company} />
       ))}
     </div>
   );

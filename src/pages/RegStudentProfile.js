@@ -3,6 +3,7 @@ import AcceptedCard from "../components/AcceptedCardStudent";
 
 function RegStudentProfile() {
   const [regStudentData, setRegStudentData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/student/getregstudent", {
@@ -16,9 +17,11 @@ function RegStudentProfile() {
       .then((data) => {
         console.log(data);
         setRegStudentData(data.regstudent);
+        setLoading(false); // Set loading to false when data is loaded
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false); // Set loading to false in case of an error
       });
   }, []);
 
@@ -31,7 +34,9 @@ function RegStudentProfile() {
         margin: "10px",
       }}
     >
-      {regStudentData && regStudentData.length > 0 ? (
+      {loading ? ( // Display a loading message while loading
+        <p>Loading...</p>
+      ) : regStudentData && regStudentData.length > 0 ? (
         regStudentData.map((student, index) => (
           <AcceptedCard key={index} student_company={student} />
         ))
