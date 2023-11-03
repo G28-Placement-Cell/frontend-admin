@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 import PendingCard from "../components/PendingCardStudent";
+import { useVerifyMutation } from "../slices/adminApislice";
 
 function StudentProfile() {
   const [studentData, setStudentData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [verify] = useVerifyMutation();
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
