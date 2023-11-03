@@ -24,6 +24,10 @@ const AcceptedCard = ({ student_company }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        bgcolor: "secondary.contrastText",
+        color: "secondary.main",
+        // boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
+        // borderRadius: "10px",
       }}
     >
       <CardMedia
@@ -55,7 +59,6 @@ const AcceptedCard = ({ student_company }) => {
         <IconButton aria-label="delete" size="small">
           <DeleteIcon />
         </IconButton>
-
       </CardContent>
     </Card>
   );
