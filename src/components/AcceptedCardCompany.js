@@ -8,13 +8,32 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from '@mui/material/Stack';
 import { ButtonGroup } from "@mui/material";
-
-const buttons = [
-  <Button key="MoreInfo">More Info</Button>,
-  <Button key="Remove">Remove</Button>,
-];
+import { useVerifycompMutation, useRejectcompMutation } from "../slices/adminApislice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AcceptedCard = ({ student_company }) => {
+
+  const [reject] = useRejectcompMutation();
+  const handleReject = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(student_company.email)
+      const res = await reject({ email: student_company.email }).unwrap();
+      console.log(res);
+      console.log("reject");
+    }
+    catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error)
+    }
+  }
+
+  // const buttons = [
+  //   <Button key="MoreInfo">More Info</Button>,
+  //   <Button onClick={handleReject} key="Remove">Remove</Button>,
+  // ];
+
   return (
     <Card
       sx={{
@@ -56,7 +75,7 @@ const AcceptedCard = ({ student_company }) => {
         <Button size="medium" variant="contained">
           More Info
         </Button>
-        <IconButton aria-label="delete" size="small">
+        <IconButton onClick={handleReject} aria-label="delete" size="small">
           <DeleteIcon />
         </IconButton>
       </CardContent>

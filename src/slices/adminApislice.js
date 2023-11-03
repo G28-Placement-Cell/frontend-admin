@@ -2,6 +2,7 @@ import { apislice } from "./apislice";
 
 const admin_url = 'api/admin'
 const student_url = 'api/student'
+const company_url = 'api/company'
 
 export const companyApislice = apislice.injectEndpoints({
     endpoints: (builder) => ({
@@ -35,7 +36,51 @@ export const companyApislice = apislice.injectEndpoints({
                 message: "ok"
             })
         }),
+        verify: builder.mutation({
+            query: (data) => ({
+                url: `${student_url}/verify`,
+                method: 'POST',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: data,
+                message: "ok"
+            })
+        }),
+        reject: builder.mutation({
+            query: (data) => ({
+                url: `${student_url}/reject`,
+                method: 'POST',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: data,
+                message: "ok"
+            })
+        }),
+        verifycomp: builder.mutation({
+            query: (data) => ({
+                url: `${company_url}/verify`,
+                method: 'POST',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: data,
+                message: "ok"
+            })
+        }),
+        rejectcomp: builder.mutation({
+            query: (data) => ({
+                url: `${company_url}/reject`,
+                method: 'POST',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: data,
+                message: "ok"
+            })
+        }),
     })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation } = companyApislice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useVerifyMutation, useRejectMutation, useVerifycompMutation, useRejectcompMutation } = companyApislice;

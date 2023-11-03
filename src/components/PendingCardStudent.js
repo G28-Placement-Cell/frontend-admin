@@ -5,13 +5,50 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { ButtonGroup } from "@mui/material";
+import { useVerifyMutation, useRejectMutation } from "../slices/adminApislice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const buttons = [
-  <Button key="accept">Accept</Button>,
-  <Button key="reject">Reject</Button>,
-];
+
 
 const PendingCard = ({ student_company }) => {
+
+  const [verify] = useVerifyMutation();
+  const [reject] = useRejectMutation();
+
+  const handleAccept = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(student_company.student_id)
+      const res = await verify({ student_id: student_company.student_id }).unwrap();
+      console.log(res);
+      console.log("Accept");
+    }
+    catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error)
+    }
+  }
+
+
+  const handleReject = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(student_company.student_id)
+      const res = await reject({ student_id: student_company.student_id }).unwrap();
+      console.log(res);
+      console.log("reject");
+    }
+    catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error)
+    }
+  }
+
+  const buttons = [
+    <Button onClick={handleAccept} key="accept">Accept</Button>,
+    <Button onClick={handleReject} key="reject">Reject</Button>,
+  ];
 
   return (
     <Card
