@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AcceptedCard from "../components/AcceptedCardStudent";
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 function RegStudentProfile() {
   const [regStudentData, setRegStudentData] = useState([]);
@@ -44,7 +44,9 @@ function RegStudentProfile() {
             <AcceptedCard key={index} student_company={student} />
           ))
         ) : (
-          <p>No data available</p>
+          <div style={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'50vh'}}>
+          <Typography variant="h6">No registered student profiles</Typography>
+        </div>
         )}
       </div>
     </Paper>

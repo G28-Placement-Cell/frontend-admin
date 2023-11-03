@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 import PendingCard from "../components/PendingCardStudent";
 import { useVerifyMutation } from "../slices/adminApislice";
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 function StudentProfile() {
   const [studentData, setStudentData] = useState([]);
@@ -48,7 +48,9 @@ function StudentProfile() {
             <PendingCard key={index} student_company={student} />
           ))
         ) : (
-          <p>No data available</p>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+            <Typography variant="h6">No pending student profiles</Typography>
+          </div>
         )}
       </div>
     </Paper>

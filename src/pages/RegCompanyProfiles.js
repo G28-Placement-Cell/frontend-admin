@@ -1,6 +1,6 @@
 import AcceptedCard from "../components/AcceptedCardCompany";
 import React, { useState, useEffect } from "react";
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import "../style/studentprofile.css";
 
 function RegCompanyProfile() {
@@ -39,7 +39,9 @@ function RegCompanyProfile() {
             <AcceptedCard key={index} student_company={company} />
           ))
         ) : (
-          <p>No data available</p>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+            <Typography variant="h6">No registered company profiles</Typography>
+          </div>
         )}
       </div>
     </Paper>

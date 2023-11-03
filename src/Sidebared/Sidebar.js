@@ -44,6 +44,12 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
+    title: "Announcements By Companies",
+    path: "/AnnouncementsByCompany",
+    icon: <TfiIcons.TfiAnnouncement />,
+    cName: "nav-text",
+  },
+  {
     title: "Change Password",
     path: "/changepassword",
     icon: <TbIcons.TbArrowsExchange />,

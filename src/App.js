@@ -1,8 +1,4 @@
 import './App.css';
-import { Head } from './previous/Head';
-import { Job } from './previous/Job';
-import DataGrid from 'react-data-grid';
-import { Tablet } from './pages/Tablet';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -17,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import RegCompanyProfile from './pages/RegCompanyProfiles';
 import AddAnnouncementStudent from './pages/AddAnnouncementStudent';
 import AddAnnouncementCompany from './pages/AddAnnouncementCompany';
-
+import CompanyAnnouncements from './pages/CompanyAnnouncements';
 
 function App() {
 
@@ -38,6 +34,7 @@ function App() {
             <Route path='/changepassword' element={<ChangePassword />} />
             <Route path='/addAnnouncementCompany' element={<AddAnnouncementCompany />} />
             <Route path='/addAnnouncementStudent' element={<AddAnnouncementStudent />} />
+            <Route path='/AnnouncementsByCompany' element={<CompanyAnnouncements />} />
             <Route path='/logout' />
           </Routes>
         </div>

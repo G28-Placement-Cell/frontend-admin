@@ -1,10 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 import PendingCard from "../components/PendingCardCompany";
-import { Paper } from "@mui/material";
-
-
+import { Paper, Typography } from "@mui/material";
 
 function PenCompanyProfile() {
   const [companyData, setCompanyData] = useState([]);
@@ -31,21 +28,27 @@ function PenCompanyProfile() {
   }, []);
 
   return (
-    <Paper sx={{ py: 1, px: 3 }} className="container" >
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        margin: "10px",
-      }}
-    >
-      {loading ? ( // Display a loading message while loading
-        <p>Loading...</p>
-      ) : companyData.map((company, index) => (
-        <PendingCard key={index} student_company={company} />
-      ))}
-    </div>
+    <Paper sx={{ py: 1, px: 3 }} className="container">
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          margin: "10px",
+        }}
+      >
+        {loading ? ( // Display a loading message while loading
+          <p>Loading...</p>
+        ) : companyData.length === 0 ? ( // Display "No pending company profiles" if there are no elements
+        <div style={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'50vh'}}>
+          <Typography variant="h6">No pending company profiles</Typography>
+        </div>
+        ) : (
+          companyData.map((company, index) => (
+            <PendingCard key={index} student_company={company} />
+          ))
+        )}
+      </div>
     </Paper>
   );
 }
