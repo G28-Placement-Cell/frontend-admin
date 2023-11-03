@@ -15,7 +15,9 @@ import PenCompanyProfile from './pages/PenCompanyProfile';
 import AdminLogin from './pages/AdminLogin';
 import { ToastContainer } from 'react-toastify';
 import RegCompanyProfile from './pages/RegCompanyProfiles';
-import AddAnnouncement from './pages/AddAnnouncement';
+import AddAnnouncementStudent from './pages/AddAnnouncementStudent';
+import AddAnnouncementCompany from './pages/AddAnnouncementCompany';
+
 
 function App() {
 
@@ -34,7 +36,8 @@ function App() {
             <Route path='/StudentAnnouncements' element={<AnnouncementSectionStudent />} />
             <Route path='/CompanyAnnouncements' element={<AnnouncementSectionCompany />} />
             <Route path='/changepassword' element={<ChangePassword />} />
-            <Route path='/addAnnouncement' element={<AddAnnouncement />} />
+            <Route path='/addAnnouncementCompany' element={<AddAnnouncementCompany />} />
+            <Route path='/addAnnouncementStudent' element={<AddAnnouncementStudent />} />
             <Route path='/logout' />
           </Routes>
         </div>
