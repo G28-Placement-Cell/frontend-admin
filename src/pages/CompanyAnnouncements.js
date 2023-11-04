@@ -1,74 +1,107 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Container,
-    Typography,
-    TextField,
-    Button,
-    Paper,
-    List,
-    ListItem,
-    ListItemText,
-    ListItemIcon,
-    Divider,
-    Box,
-    Fab,
+  Typography,
+  ListItem,
+  ListItemText,
+  List,
+  Paper,
 } from '@mui/material';
-import { PostAdd as PostAddIcon, Add as AddIcon } from '@mui/icons-material';
 import '../style/AnnouncementSection.css'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AnnouncementSection = ({ title }) => {
-    const [announcements, setAnnouncements] = useState([]);
-    const [announcementText, setAnnouncementText] = useState('');
-    const [loading, setLoading] = useState(true); // Add loading state
+  const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
-    useEffect(() => {
-        fetch('http://localhost:8000/api/announcements/admin/company', {
+  useEffect(() => {
+    fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+        // Filter out announcements with null company
+        const validAnnouncements = data.filter(announcement => announcement.company);
+        console.log("Valid announcements:", validAnnouncements); // Log valid announcements
+
+        // Extract the unique company IDs from the valid announcements
+        const uniqueCompanyIds = [...new Set(validAnnouncements.map(announcement => announcement.company._id))];
+        console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
+
+        // Fetch company names for each unique company ID
+        const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
+          fetch(`http://localhost:8000/api/company/name/${companyId}`, {
             method: 'GET',
             headers: {
-                'content-type': 'application/json',
+              'content-type': 'application/json',
             },
-        })
+          })
             .then((res) => res.json())
-            .then((data) => {
-                setAnnouncements(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setLoading(false);
+        );
+
+        // Wait for all company name fetches to complete
+        Promise.all(fetchCompanyNames)
+          .then(companyData => {
+
+            const companyMap = {};
+            companyData.forEach(company => {
+              companyMap[company.company._id] = company.company.companyname; // Access the 'companyname' field
+
             });
-    }, []);
+
+            console.log("Company map:", companyMap); // Log company map
+
+            const announcementsWithCompanyNames = validAnnouncements.map(announcement => ({
+              ...announcement,
+              companyName: companyMap[announcement.company._id],
+            }));
+
+            setAnnouncements(announcementsWithCompanyNames);
+            console.log(announcements);
+            setLoading(false);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
 
 
-    const handleAnnouncementChange = (e) => {
-        setAnnouncementText(e.target.value);
-    };
 
-    const handleSubmitAnnouncement = () => {
-        if (announcementText.trim() !== '') {
-            const newAnnouncement = {
-                id: new Date().getTime(),
-                text: announcementText,
-                timestamp: new Date().toLocaleString(),
-            };
 
-            setAnnouncements([...announcements, newAnnouncement]);
-            setAnnouncementText('');
-        }
-    };
 
-    // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setLoading(false);
-    //     }, 2000);
-    // }, []);
+  // const handleAnnouncementChange = (e) => {
+  //   setAnnouncementText(e.target.value);
+  // };
 
-    const navigate = useNavigate();
+  // const handleSubmitAnnouncement = () => {
+  //   if (announcementText.trim() !== '') {
+  //     const newAnnouncement = {
+  //       id: new Date().getTime(),
+  //       text: announcementText,
+  //       timestamp: new Date().toLocaleString(),
+  //     };
 
-    return (
-        <div style={{ position: 'relative' }}>
+  //     setAnnouncements([...announcements, newAnnouncement]);
+  //     setAnnouncementText('');
+  //   }
+  // };
+
+  // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
+  // useEffect(() => {
+  //     setTimeout(() => {
+  //         setLoading(false);
+  //     }, 2000);
+  // }, []);
+
+  const navigate = useNavigate();
+
+  return (
+    <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Announcements Posted by Companies {title}:
@@ -79,19 +112,20 @@ const AnnouncementSection = ({ title }) => {
           announcements && announcements.length > 0 ? (
             <List className="list">
               {announcements
-                .slice() // Create a shallow copy of the array
-                .reverse() // Reverse the order of announcements
+                .slice()
+                .reverse()
                 .map((announcement, index) => (
                   <ListItem key={index} className="item">
                     <ListItemText
                       primary={
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                          <Typography>{announcement.title}</Typography>
+                        <div>
+                          <Typography variant='h6' sx={{ mb: 1 }}>{announcement?.companyName}</Typography>
+                          <Typography variant='body1'>{announcement.title}</Typography>
                         </div>
                       }
                       secondary={
                         <div>
-                          <Typography>{announcement.description}</Typography>
+                          <Typography variant='body2'>{announcement.description}</Typography>
                           <Typography
                             sx={{ fontSize: 12, fontStyle: "italic", textAlign: "right" }}
                             color="text.secondary"
@@ -100,7 +134,7 @@ const AnnouncementSection = ({ title }) => {
                           </Typography>
                         </div>
                       }
-                      secondaryTypographyProps={{ variant: "body2" }} // Customize secondary text style
+                      secondaryTypographyProps={{ variant: "body2" }}
                     />
                   </ListItem>
                 ))}
@@ -113,7 +147,7 @@ const AnnouncementSection = ({ title }) => {
         )}
       </Paper>
     </div>
-    );
+  );
 };
 
 export default AnnouncementSection;
