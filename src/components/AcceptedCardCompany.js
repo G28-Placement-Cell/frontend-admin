@@ -11,6 +11,7 @@ import { ButtonGroup } from "@mui/material";
 import { useVerifycompMutation, useRejectcompMutation } from "../slices/adminApislice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 const AcceptedCard = ({ student_company }) => {
 
@@ -73,7 +74,7 @@ const AcceptedCard = ({ student_company }) => {
         </ButtonGroup> */}
 
         <Button size="medium" variant="contained">
-          More Info
+        <Link to={`/getCompany/${student_company?._id}`} style={{textDecoration:'none',color:'white'}} >More Info</Link>
         </Button>
         <IconButton onClick={handleReject} aria-label="delete" size="small">
           <DeleteIcon />

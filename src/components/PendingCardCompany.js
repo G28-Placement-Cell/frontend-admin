@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { ButtonGroup } from "@mui/material";
 import { useVerifycompMutation, useRejectcompMutation } from "../slices/adminApislice";
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 
 const PendingCard = ({ student_company }) => {
@@ -88,7 +89,7 @@ const PendingCard = ({ student_company }) => {
           {student_company.hrname}
         </Typography>
         <Button variant="contained" color="primary">
-          More Info
+        <Link to={`/getCompany/${student_company?._id}`} style={{textDecoration:'none',color:'white'}} >More Info</Link>
         </Button>
         <ButtonGroup
           size="medium"

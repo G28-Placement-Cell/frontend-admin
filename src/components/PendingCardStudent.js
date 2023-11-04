@@ -8,6 +8,8 @@ import { ButtonGroup } from "@mui/material";
 import { useVerifyMutation, useRejectMutation } from "../slices/adminApislice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import PendingStudent  from "./StudentDetails";
+import { Link } from "react-router-dom";
 
 
 
@@ -68,8 +70,8 @@ const PendingCard = ({ student_company }) => {
       <CardMedia
         component="img"
         height="180"
-        alt={student_company.name}
-        image={student_company.photoUrl}
+        alt={student_company?.name}
+        image={student_company?.photoUrl}
       />
       <CardContent className="cardContent">
         <Typography
@@ -78,7 +80,7 @@ const PendingCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.name}
+          {student_company?.name}
         </Typography>
         <Typography
           gutterBottom
@@ -86,10 +88,10 @@ const PendingCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.student_id}
+          {student_company?.student_id}
         </Typography>
         <Button variant="contained" color="primary">
-          More Info
+          <Link to={`/getStudent/${student_company?._id}`} style={{textDecoration:'none',color:'white'}} >More Info</Link>
         </Button>
         <ButtonGroup
           size="medium"

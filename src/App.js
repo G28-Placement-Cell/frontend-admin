@@ -14,6 +14,8 @@ import RegCompanyProfile from './pages/RegCompanyProfiles';
 import AddAnnouncementStudent from './pages/AddAnnouncementStudent';
 import AddAnnouncementCompany from './pages/AddAnnouncementCompany';
 import CompanyAnnouncements from './pages/CompanyAnnouncements';
+import PendingStudent from './components/StudentDetails';
+import PendingCompany from './components/CompanyDetails';
 
 function App() {
 
@@ -35,6 +37,8 @@ function App() {
             <Route path='/addAnnouncementCompany' element={<AddAnnouncementCompany />} />
             <Route path='/addAnnouncementStudent' element={<AddAnnouncementStudent />} />
             <Route path='/AnnouncementsByCompany' element={<CompanyAnnouncements />} />
+            <Route path='/getStudent/:id' element={<PendingStudent />} />
+            <Route path='/getCompany/:id' element={<PendingCompany />} />
             <Route path='/logout' />
           </Routes>
         </div>
