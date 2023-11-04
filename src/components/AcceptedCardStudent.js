@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRejectMutation } from "../slices/adminApislice";
 import PendingStudent  from "./StudentDetails";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const AcceptedCard = ({ student_company }) => {
 
@@ -31,6 +31,8 @@ const AcceptedCard = ({ student_company }) => {
       toast.error(err?.data?.message || err.error)
     }
   }
+
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -70,8 +72,8 @@ const AcceptedCard = ({ student_company }) => {
           {buttons}
         </ButtonGroup> */}
 
-        <Button size="large" variant="contained">
-        <Link to={`/getStudent/${student_company?._id}`} style={{textDecoration:'none',color:'white'}} >More Info</Link>
+        <Button size="medium" variant="contained" onClick={() => navigate(`/getStudent/${student_company?._id}`)}>
+          More Info
         </Button>
         <IconButton onClick={handleReject} aria-label="delete" size="small">
           <DeleteIcon />

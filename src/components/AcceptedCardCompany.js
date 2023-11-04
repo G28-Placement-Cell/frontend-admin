@@ -11,7 +11,8 @@ import { ButtonGroup } from "@mui/material";
 import { useVerifycompMutation, useRejectcompMutation } from "../slices/adminApislice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+
 
 const AcceptedCard = ({ student_company }) => {
 
@@ -29,6 +30,8 @@ const AcceptedCard = ({ student_company }) => {
       toast.error(err?.data?.message || err.error)
     }
   }
+
+  const navigate = useNavigate();
 
   // const buttons = [
   //   <Button key="MoreInfo">More Info</Button>,
@@ -73,8 +76,8 @@ const AcceptedCard = ({ student_company }) => {
           {buttons}
         </ButtonGroup> */}
 
-        <Button size="medium" variant="contained">
-        <Link to={`/getCompany/${student_company?._id}`} style={{textDecoration:'none',color:'white'}} >More Info</Link>
+        <Button size="medium" variant="contained" onClick={() => navigate(`/getCompany/${student_company?._id}`)}>
+          More Info
         </Button>
         <IconButton onClick={handleReject} aria-label="delete" size="small">
           <DeleteIcon />
