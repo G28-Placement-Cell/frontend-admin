@@ -1,74 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Container,
-    Typography,
-    TextField,
-    Button,
-    Paper,
-    List,
-    ListItem,
-    ListItemText,
-    ListItemIcon,
-    Divider,
-    Box,
-    Fab,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Divider,
+  Box,
+  Fab,
 } from '@mui/material';
 import { PostAdd as PostAddIcon, Add as AddIcon } from '@mui/icons-material';
 import '../style/AnnouncementSection.css'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const AnnouncementSection = ({ title }) => {
-    const [announcements, setAnnouncements] = useState([]);
-    const [announcementText, setAnnouncementText] = useState('');
-    const [loading, setLoading] = useState(true); // Add loading state
+  const [announcements, setAnnouncements] = useState([]);
+  const [announcementText, setAnnouncementText] = useState('');
+  const [loading, setLoading] = useState(true); // Add loading state
 
-    useEffect(() => {
-        fetch('http://localhost:8000/api/announcements/admin/company', {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setAnnouncements(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    fetch('http://localhost:8000/api/announcements/admin/company', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAnnouncements(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
 
 
-    const handleAnnouncementChange = (e) => {
-        setAnnouncementText(e.target.value);
-    };
+  const handleAnnouncementChange = (e) => {
+    setAnnouncementText(e.target.value);
+  };
 
-    const handleSubmitAnnouncement = () => {
-        if (announcementText.trim() !== '') {
-            const newAnnouncement = {
-                id: new Date().getTime(),
-                text: announcementText,
-                timestamp: new Date().toLocaleString(),
-            };
+  const handleSubmitAnnouncement = () => {
+    if (announcementText.trim() !== '') {
+      const newAnnouncement = {
+        id: new Date().getTime(),
+        text: announcementText,
+        timestamp: new Date().toLocaleString(),
+      };
 
-            setAnnouncements([...announcements, newAnnouncement]);
-            setAnnouncementText('');
-        }
-    };
+      setAnnouncements([...announcements, newAnnouncement]);
+      setAnnouncementText('');
+    }
+  };
 
-    // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-    }, []);
+  // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <div style={{ position: 'relative' }}>
+  return (
+    <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Announcements for Companies {title}:
@@ -119,10 +119,10 @@ const AnnouncementSection = ({ title }) => {
         sx={{ position: 'fixed', bottom: 60, right: 20 }}
         onClick={() => navigate('/addAnnouncementCompany')}
       >
-        <AddIcon/>
+        <AddIcon />
       </Fab>
     </div>
-    );
+  );
 };
 
 export default AnnouncementSection;

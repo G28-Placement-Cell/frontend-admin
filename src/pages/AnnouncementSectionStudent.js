@@ -61,11 +61,11 @@ const AnnouncementSection = ({ title }) => {
   };
 
   // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  // }, []);
 
   const navigate = useNavigate();
 

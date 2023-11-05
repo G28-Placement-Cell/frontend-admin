@@ -70,34 +70,6 @@ const AnnouncementSection = ({ title }) => {
       });
   }, []);
 
-
-
-
-
-  // const handleAnnouncementChange = (e) => {
-  //   setAnnouncementText(e.target.value);
-  // };
-
-  // const handleSubmitAnnouncement = () => {
-  //   if (announcementText.trim() !== '') {
-  //     const newAnnouncement = {
-  //       id: new Date().getTime(),
-  //       text: announcementText,
-  //       timestamp: new Date().toLocaleString(),
-  //     };
-
-  //     setAnnouncements([...announcements, newAnnouncement]);
-  //     setAnnouncementText('');
-  //   }
-  // };
-
-  // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //         setLoading(false);
-  //     }, 2000);
-  // }, []);
-
   const navigate = useNavigate();
 
   return (
