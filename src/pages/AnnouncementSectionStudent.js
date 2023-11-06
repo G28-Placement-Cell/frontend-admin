@@ -48,10 +48,12 @@ const AnnouncementSection = ({ title }) => {
   const handleSearch = (value) => {
     setSearchInput(value);
     const filtered = announcements.filter((announcement) =>
-        announcement.title.toLowerCase().includes(value.toLowerCase())
+      announcement.title.toLowerCase().includes(value.toLowerCase()) ||
+      announcement.description.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredAnnouncements(filtered);
   };
+  
 
   const handleAnnouncementChange = (e) => {
     setAnnouncementText(e.target.value);
