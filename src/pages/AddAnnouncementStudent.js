@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     Paper,
@@ -8,8 +8,6 @@ import {
     Button,
 } from "@mui/material";
 import '../style/AnnouncementSection.css'
-// import { AuthContext } from "../context/AuthContext";
-
 
 const AddAnnouncement = () => {
     const [title, setTitle] = useState("");
@@ -18,9 +16,9 @@ const AddAnnouncement = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
+    const [announcements, setAnnouncements] = useState([]); // Add announcements state
 
     // const { user } = useContext(AuthContext);
-
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -73,6 +71,27 @@ const AddAnnouncement = () => {
         }
     }
 
+    // Use useEffect to fetch announcements and populate 'announcements' state
+    useEffect(() => {
+        // Example fetchAnnouncements function
+        // Replace with your actual API call
+        async function fetchAnnouncements() {
+            try {
+                const response = await fetch("http://localhost:8000/api/announcements");
+                if (response.ok) {
+                    const data = await response.json();
+                    setAnnouncements(data);
+                    // setFilteredAnnouncements(data);
+                } else {
+                    throw new Error("Failed to fetch announcements");
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchAnnouncements();
+    }, []);
+
     return (
         <Paper sx={{ py: 1, px: 3 }} className="container">
             <Typography variant="h4" sx={{ mt: 3 }} align="center" gutterBottom>
@@ -105,9 +124,9 @@ const AddAnnouncement = () => {
                     </Button>
                 </div>
             </form>
+           
         </Paper>
     );
 };
-
 
 export default AddAnnouncement;
