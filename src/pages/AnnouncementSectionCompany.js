@@ -69,7 +69,7 @@ const AnnouncementSection = ({ title }) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <Paper sx={{ py: 1, px: 3 }} className="container">
+      <Paper sx={{ py: 1, px: 3 }} className="container1">
         <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Announcements for Companies {title}:
         </Typography>

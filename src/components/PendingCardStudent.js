@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { ButtonGroup } from "@mui/material";
+import { ButtonGroup, Divider } from "@mui/material";
 import { useVerifyMutation, useRejectMutation } from "../slices/adminApislice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -65,7 +65,7 @@ const PendingCard = ({ student_company }) => {
         alignItems: "center",
         bgcolor: "secondary.contrastText",
         color: "secondary.main",
-        // boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
+        boxShadow: "10px 10px 10px 0 rgba(0,0,0,0.2)",
         // borderRadius: "10px",
       }}
     >
@@ -84,6 +84,7 @@ const PendingCard = ({ student_company }) => {
         >
           {student_company?.name}
         </Typography>
+        <Divider/>
         <Typography
           gutterBottom
           variant="body1"

@@ -7,11 +7,11 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from '@mui/material/Stack';
-import { ButtonGroup } from "@mui/material";
+import { ButtonGroup, Divider } from "@mui/material";
 import { useVerifycompMutation, useRejectcompMutation } from "../slices/adminApislice";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const AcceptedCard = ({ student_company }) => {
@@ -49,7 +49,8 @@ const AcceptedCard = ({ student_company }) => {
         alignItems: "center",
         bgcolor: "secondary.contrastText",
         color: "secondary.main",
-        // boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
+        // border: '2px solid #3B446D'
+        boxShadow: "10px 10px 10px 0 rgba(0,0,0,0.2)",
         // borderRadius: "10px",
       }}
     >
@@ -68,6 +69,7 @@ const AcceptedCard = ({ student_company }) => {
         >
           {student_company.companyname}
         </Typography>
+        <Divider color='red' />
         {/* <ButtonGroup
           size="small"
           variant="contained"
