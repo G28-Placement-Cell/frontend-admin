@@ -6,6 +6,7 @@ import StudentProfile from './pages/PenStudentProfile';
 import AnnouncementSectionStudent from './pages/AnnouncementSectionStudent';
 import AnnouncementSectionCompany from './pages/AnnouncementSectionCompany';
 import ChangePassword from './pages/ChangePassword';
+import ResetPassword from './pages/ResetPassword';
 import RegStudentProfile from './pages/RegStudentProfile';
 import PenCompanyProfile from './pages/PenCompanyProfile';
 import AdminLogin from './pages/AdminLogin';
@@ -36,6 +37,7 @@ function App() {
             <Route path='/StudentAnnouncements' element={<AnnouncementSectionStudent />} />
             <Route path='/CompanyAnnouncements' element={<AnnouncementSectionCompany />} />
             <Route path='/changepassword' element={<ChangePassword />} />
+            <Route path='/resetpassword' element={<ResetPassword />} />
             <Route path='/addAnnouncementCompany' element={<AddAnnouncementCompany />} />
             <Route path='/addAnnouncementStudent' element={<AddAnnouncementStudent />} />
             <Route path='/AnnouncementsByCompany' element={<CompanyAnnouncements />} />
