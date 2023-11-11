@@ -201,7 +201,6 @@
 // export default AboutUs;
 
 import React, { useState } from 'react';
-import { useTransition, a } from 'react-spring';
 import '../style/aboutUs.css'
 import campus from '../images/campus.svg';
 import img1 from '../images/access_time.svg'
@@ -211,7 +210,6 @@ import img4 from '../images/wallet.svg'
 import img5 from '../images/forum.svg'
 import img6 from '../images/feedback.svg'
 import ProfileCard from '../components/ProfileCard';
-import { HStack, VStack } from '@chakra-ui/react';
 const slides = [
   // {
   //   id: 1,
@@ -367,17 +365,6 @@ const AboutUs = () => {
 
   ];
 
-
-
-
-  const transitions = useTransition(slides[index], {
-    from: { opacity: 0, transform: 'translate3d(-50%, 0, -200px) scale(0.8)' },
-    enter: { opacity: 1, transform: 'translate3d(0%, 0, 0) scale(1)' },
-    leave: { opacity: 0, transform: 'translate3d(50%, 0, -200px) scale(0.8)' },
-  });
-
-  const nextSlide = () => set((state) => (state + 1) % slides.length);
-  const prevSlide = () => set((state) => (state - 1 + slides.length) % slides.length);
 
   return (
     <div>
