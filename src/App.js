@@ -19,6 +19,8 @@ import PendingStudent from './components/StudentDetails';
 import PendingCompany from './components/CompanyDetails';
 import JobProfiles from './pages/JobProfiles';
 import AboutUs from './pages/AboutUs';
+import ForgotPass from './pages/ForgotPass';
+import Reset from './pages/Reset';
 
 function App() {
 
@@ -44,8 +46,10 @@ function App() {
             <Route path='/getStudent/:id' element={<PendingStudent />} />
             <Route path='/getCompany/:id' element={<PendingCompany />} />
             <Route path='/jobProfiles' element={<JobProfiles />} />
-            <Route path='/aboutus' element={<AboutUs />}/>
+            <Route path='/aboutus' element={<AboutUs />} />
             <Route path='/logout' />
+            <Route path='/forgotpassword' element={<ForgotPass />} />
+            <Route path='/resetpassword' element={<Reset />} />
           </Routes>
         </div>
         <Footer />

@@ -3,6 +3,7 @@ import { apislice } from "./apislice";
 const admin_url = 'api/admin'
 const student_url = 'api/student'
 const company_url = 'api/company'
+const reset_url = 'api/reset'
 
 export const companyApislice = apislice.injectEndpoints({
     endpoints: (builder) => ({
@@ -91,7 +92,26 @@ export const companyApislice = apislice.injectEndpoints({
                 message: "ok"
             })
         }),
+        reset_pass: builder.mutation({
+            query: (data) => ({
+                url: `${reset_url}/admin`,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                message: "ok"
+            })
+        }),
+        reset_apply: builder.mutation({
+            query: (data) => ({
+                url: `${reset_url}/applyAdmin`,
+                method: 'POST',
+                body: data,
+                message: "ok"
+            })
+        }),
     })
 })
 
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useVerifyMutation, useRejectMutation, useVerifycompMutation, useRejectcompMutation, useChange_passwordMutation } = companyApislice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useVerifyMutation, useRejectMutation, useVerifycompMutation, useRejectcompMutation, useChange_passwordMutation, useReset_passMutation, useReset_applyMutation } = companyApislice;
