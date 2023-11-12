@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Typography,
+  TextField,
   ListItem,
   ListItemText,
   List,
@@ -8,10 +9,13 @@ import {
 } from '@mui/material';
 import '../style/AnnouncementSection.css'
 import { useNavigate } from 'react-router-dom';
+import { Autocomplete } from "@mui/material";
 
 const AnnouncementSection = ({ title }) => {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
+  const [searchInput, setSearchInput] = useState(""); // Add searchInput state
+  const [filteredAnnouncements, setFilteredAnnouncements] = useState([]); // Add filteredAnnouncements state
 
   useEffect(() => {
     fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
@@ -70,20 +74,65 @@ const AnnouncementSection = ({ title }) => {
       });
   }, []);
 
+  const handleSearch = (value) => {
+    if (!value) {
+      setSearchInput(value);
+      setFilteredAnnouncements(announcements);
+      return;
+    }
+
+    setSearchInput(value);
+    const filtered = announcements.filter(
+      (announcement) =>
+        announcement?.title?.toLowerCase().includes(value.toLowerCase()) ||
+        announcement?.description?.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredAnnouncements(filtered);
+  };
+
+
   const navigate = useNavigate();
 
   return (
     <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
-        <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+        {/* <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Announcements Posted by Companies {title}:
-        </Typography>
+        </Typography> */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+            Announcements Posted by companies {title}:
+          </Typography>
+          <Autocomplete
+            disablePortal
+            id="search-announcement"
+            options={announcements.map((announcement) => announcement.title)}
+            value={searchInput}
+            onChange={(_, newValue) => handleSearch(newValue)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search title"
+                sx={{
+                  width: 350,
+                  margin: "10px auto",
+                }}
+              />
+            )}
+          />
+        </div>
         {loading ? (
           <p>Loading...</p>
         ) : (
           announcements && announcements.length > 0 ? (
             <List className="list">
-              {announcements
+              {(searchInput ? filteredAnnouncements : announcements)
                 .slice()
                 .reverse()
                 .map((announcement, index) => (
