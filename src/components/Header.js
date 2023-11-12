@@ -1,23 +1,39 @@
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import { Link, Navigate } from 'react-router-dom';
-import { SidebarData } from '../Sidebared/Sidebar';
 import '../Sidebared/Navbar.css';
-import { IconContext } from 'react-icons';
 import TemporaryDrawer from './Navbar';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useLogoutMutation } from "../slices/adminApislice";
+import { logout } from "../slices/authslice";
 
 function Header() {
   // const [sidebar, setSidebar] = useState(false);
+  const adminInfoJSON = localStorage.getItem('adminInfo');
+  const adminInfo = JSON.parse(adminInfoJSON);
+
+  const [sidebar, setSidebar] = useState(false);
+  const dispatch = useDispatch();
+  const [logoutapicall] = useLogoutMutation();
   const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutapicall().unwrap();
+      dispatch(logout());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // const showSidebar = () => setSidebar(!sidebar);
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-        <TemporaryDrawer />
+      {adminInfo && (
+          <TemporaryDrawer logoutHandler={logoutHandler} />
+        )}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
           Placement Cell
         </Typography>
