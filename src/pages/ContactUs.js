@@ -4,7 +4,7 @@ import '../style/contactus.css'
 function ContactUs() {
   return (
       <section className="contact" id="contact">
-        <div className="container">
+        <div className="container12">
           <div className="heading text-center">
             <h2>Contact Us</h2>
                                
@@ -20,21 +20,21 @@ function ContactUs() {
               <div className="content">
                 {/* Info-1 */}
                 <div className="info">
-                  <i className="fas fa-mobile-alt" />
+                <i className="fa fa-mobile" aria-hidden="true" id="number1"></i>
                   <h4 className="d-inline-block">PHONE :
                     <br />
                     <span>+12457836913 , +12457836913</span></h4>
                 </div>
                 {/* Info-2 */}
                 <div className="info">
-                  <i className="far fa-envelope" />
+                <i className="fa fa-envelope-o" aria-hidden="true"></i>
                   <h4 className="d-inline-block">EMAIL :
                     <br />
                     <span> placement@daiict.ac.in</span></h4>
                 </div>
                 {/* Info-3 */}
                 <div className="info">
-                  <i className="fas fa-map-marker-alt" />
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
                   <h4 className="d-inline-block">ADDRESS :<br /></h4>
                    <h4> Dhirubhai Ambani Institute of Information and Communication Technology, Near Indroda Circle, Gandhinagar - 382 007, Gujarat (India)</h4>
                 </div>
