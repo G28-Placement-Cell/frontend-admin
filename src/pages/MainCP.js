@@ -6,6 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
+function validatePassword(password) {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordPattern.test(password);
+};
+
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -16,7 +21,14 @@ function ChangePassword() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return; // Exit the function without submitting the form
+    }
+    else if (!validatePassword(newPassword)) {
+      toast.error('Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character');
+      return;
+    }
     try {
       // console.log('ok');
       const res = await change_password({ currentPassword, newPassword, confirmPassword }).unwrap();
