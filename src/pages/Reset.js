@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useReset_passwordMutation, useReset_applyMutation } from '../slices/adminApislice';
 import { removeReset } from "../slices/authslice";
-
+function validatePassword(password) {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordPattern.test(password);
+};
 
 function ResetPassword() {
   const [otp, setOtp] = useState('');
@@ -21,6 +24,14 @@ function ResetPassword() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return; // Exit the function without submitting the form
+    }
+    else if (!validatePassword(password)) {
+      toast.error('Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character');
+      return;
+    }
     try {
       // console.log('ok');
       const resetId = localStorage.getItem('resetId');
