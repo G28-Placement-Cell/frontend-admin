@@ -1,11 +1,16 @@
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { SidebarData } from '../Sidebared/Sidebar';
 import '../Sidebared/Navbar.css';
-import TemporaryDrawer from './Navbar';
+import { IconContext } from 'react-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../slices/authslice';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { useLogoutMutation } from "../slices/adminApislice";
-import { logout } from "../slices/authslice";
+import { useLogoutMutation } from '../slices/adminApislice';
+import TemporaryDrawer from './Navbar';
 
 function Header() {
   // const [sidebar, setSidebar] = useState(false);
@@ -27,6 +32,7 @@ function Header() {
     }
   };
 
+  console.log(email);
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>

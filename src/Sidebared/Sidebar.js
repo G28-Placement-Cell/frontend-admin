@@ -69,7 +69,7 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Log out",
+    title: "Logout",
     path: "/logout",
     icon: <LogoutRoundedIcon />,
     cName: "nav-text",

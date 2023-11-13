@@ -22,6 +22,7 @@ import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import ForgotPass from './pages/ForgotPass';
 import Reset from './pages/Reset';
+import LogOut from './pages/LogOut';
 
 function App() {
 
@@ -49,7 +50,7 @@ function App() {
             <Route path='/jobProfiles' element={<JobProfiles />} />
             <Route path='/aboutus' element={<AboutUs />} />
             <Route path='/contactus' element={<ContactUs />} />
-            <Route path='/logout' />
+            <Route path='/logout' element={<LogOut />} />
             <Route path='/forgotpassword' element={<ForgotPass />} />
             <Route path='/resetpassword' element={<Reset />} />
           </Routes>
