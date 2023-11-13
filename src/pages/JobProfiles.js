@@ -75,7 +75,7 @@ const JobProfiles = () => {
                                                                 <h6 className="mb-0">Type (Job/SI)</h6>
                                                             </div>
                                                             <div className="col-sm-9 text-secondary">
-                                                                {jobProfile.company_type}
+                                                                {jobProfile.offer_type}
                                                             </div>
                                                         </div>
                                                         <hr />
