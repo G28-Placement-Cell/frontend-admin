@@ -9,8 +9,8 @@ import { logout } from "../slices/authslice";
 
 function Header() {
   // const [sidebar, setSidebar] = useState(false);
-  const adminInfoJSON = localStorage.getItem('adminInfo');
-  const adminInfo = JSON.parse(adminInfoJSON);
+  const emailJSON = localStorage.getItem('email');
+  const email = JSON.parse(emailJSON);
 
   const [sidebar, setSidebar] = useState(false);
   const dispatch = useDispatch();
@@ -27,11 +27,11 @@ function Header() {
     }
   };
 
-  // const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => setSidebar(!sidebar);
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-      {adminInfo && (
+      {email && (
           <TemporaryDrawer logoutHandler={logoutHandler} />
         )}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
