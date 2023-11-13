@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Typography,
   TextField,
@@ -6,9 +6,9 @@ import {
   ListItemText,
   List,
   Paper,
-} from '@mui/material';
-import '../style/AnnouncementSection.css'
-import { useNavigate } from 'react-router-dom';
+} from "@mui/material";
+import "../style/AnnouncementSection.css";
+import { useNavigate } from "react-router-dom";
 import { Autocomplete } from "@mui/material";
 
 const AnnouncementSection = ({ title }) => {
@@ -16,85 +16,91 @@ const AnnouncementSection = ({ title }) => {
   const [loading, setLoading] = useState(true); // Add loading state
   const [searchInput, setSearchInput] = useState(""); // Add searchInput state
   const [filteredAnnouncements, setFilteredAnnouncements] = useState([]); // Add filteredAnnouncements state
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/announcements/admin/companyAnnouncements', {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
+    fetch(
+      "http://localhost:8000/api/announcements/admin/companyAnnouncements",
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-
         // Filter out announcements with null company
-        const validAnnouncements = data.filter(announcement => announcement.company);
+        const validAnnouncements = data.filter(
+          (announcement) => announcement.company
+        );
         console.log("Valid announcements:", validAnnouncements); // Log valid announcements
 
         // Extract the unique company IDs from the valid announcements
-        const uniqueCompanyIds = [...new Set(validAnnouncements.map(announcement => announcement.company._id))];
+        const uniqueCompanyIds = [
+          ...new Set(
+            validAnnouncements.map((announcement) => announcement.company._id)
+          ),
+        ];
         console.log("Unique company IDs:", uniqueCompanyIds); // Log unique company IDs
 
         // Fetch company names for each unique company ID
-        const fetchCompanyNames = uniqueCompanyIds.map(companyId =>
+        const fetchCompanyNames = uniqueCompanyIds.map((companyId) =>
           fetch(`http://localhost:8000/api/company/name/${companyId}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-              'content-type': 'application/json',
+              "content-type": "application/json",
             },
-          })
-            .then((res) => res.json())
+          }).then((res) => res.json())
         );
-
+        
         // Wait for all company name fetches to complete
-        Promise.all(fetchCompanyNames)
-          .then(companyData => {
+        Promise.all(fetchCompanyNames).then((companyData) => {
+          const companyMap = {};
+          companyData.forEach((company) => {
+            companyMap[company.company._id] = company.company.companyname; // Access the 'companyname' field
+          });
 
-            const companyMap = {};
-            companyData.forEach(company => {
-              companyMap[company.company._id] = company.company.companyname; // Access the 'companyname' field
+          console.log("Company map:", companyMap); // Log company map
 
-            });
-
-            console.log("Company map:", companyMap); // Log company map
-
-            const announcementsWithCompanyNames = validAnnouncements.map(announcement => ({
+          const announcementsWithCompanyNames = validAnnouncements.map(
+            (announcement) => ({
               ...announcement,
               companyName: companyMap[announcement.company._id],
-            }));
+            })
+          );
 
-            setAnnouncements(announcementsWithCompanyNames);
-            console.log(announcements);
-            setLoading(false);
-          });
+          setAnnouncements(announcementsWithCompanyNames);
+          console.log(announcements);
+          setLoading(false);
+        });
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
       });
+
   }, []);
 
-  const handleSearch = (value) => {
-    if (!value) {
-      setSearchInput(value);
-      setFilteredAnnouncements(announcements);
+
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredData(announcements);
       return;
-    }
-
-    setSearchInput(value);
-    const filtered = announcements.filter(
-      (announcement) =>
-        announcement?.title?.toLowerCase().includes(value.toLowerCase()) ||
-        announcement?.description?.toLowerCase().includes(value.toLowerCase())
+    }    
+    const filtered = announcements.filter((announcements) =>
+      announcements.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredAnnouncements(filtered);
-  };
-
+    setFilteredData(filtered);
+  }, [searchTerm, announcements]);
 
   const navigate = useNavigate();
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         {/* <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Announcements Posted by Companies {title}:
@@ -109,62 +115,70 @@ const AnnouncementSection = ({ title }) => {
           <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
             Announcements Posted by companies {title}:
           </Typography>
-          <Autocomplete
-            disablePortal
-            id="search-announcement"
-            options={announcements.map((announcement) => announcement.title)}
-            value={searchInput}
-            onChange={(_, newValue) => handleSearch(newValue)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search title"
-                sx={{
-                  width: 350,
-                  margin: "10px auto",
-                }}
-              />
-            )}
+          <TextField
+            label="Search"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         {loading ? (
           <p>Loading...</p>
+        ) : filteredData && filteredData.length > 0 ? (
+          <List className="list">
+            {filteredData
+              .slice()
+              .reverse()
+              .map((announcement, index) => (
+                <ListItem key={index} className="item">
+                  <ListItemText
+                    primary={
+                      <div>
+                        <Typography variant="h6" sx={{ mb: 1 }}>
+                          {announcement?.companyName}
+                        </Typography>
+                        <Typography variant="body1">
+                          {announcement.title}
+                        </Typography>
+                      </div>
+                    }
+                    secondary={
+                      <div>
+                        <Typography variant="body2">
+                          {announcement.description}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: 12,
+                            fontStyle: "italic",
+                            textAlign: "right",
+                          }}
+                          color="text.secondary"
+                        >
+                          {new Date(announcement.date).toLocaleString()}
+                        </Typography>
+                      </div>
+                    }
+                    secondaryTypographyProps={{ variant: "body2" }}
+                  />
+                </ListItem>
+              ))}
+          </List>
         ) : (
-          announcements && announcements.length > 0 ? (
-            <List className="list">
-              {(searchInput ? filteredAnnouncements : announcements)
-                .slice()
-                .reverse()
-                .map((announcement, index) => (
-                  <ListItem key={index} className="item">
-                    <ListItemText
-                      primary={
-                        <div>
-                          <Typography variant='h6' sx={{ mb: 1 }}>{announcement?.companyName}</Typography>
-                          <Typography variant='body1'>{announcement.title}</Typography>
-                        </div>
-                      }
-                      secondary={
-                        <div>
-                          <Typography variant='body2'>{announcement.description}</Typography>
-                          <Typography
-                            sx={{ fontSize: 12, fontStyle: "italic", textAlign: "right" }}
-                            color="text.secondary"
-                          >
-                            {new Date(announcement.date).toLocaleString()}
-                          </Typography>
-                        </div>
-                      }
-                      secondaryTypographyProps={{ variant: "body2" }}
-                    />
-                  </ListItem>
-                ))}
-            </List>
-          ) : (
-            <div style={{ minHeight: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Typography sx={{ textAlign: 'center' }} variant="body1">No data to display</Typography>
-            </div>
-          )
+          <div
+            style={{
+              minHeight: "40vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography sx={{ textAlign: "center" }} variant="body1">
+              No data to display
+            </Typography>
+          </div>
         )}
       </Paper>
     </div>
