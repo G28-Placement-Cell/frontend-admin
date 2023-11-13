@@ -62,17 +62,17 @@ const AcceptedCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.name}
+          {student_company?.name}
         </Typography>
-        <Divider color='blue' sx={{bgcolor:'red', color:'yellow'}} />
-        {/* <ButtonGroup
-          size="small"
-          variant="contained"
-          style={{ marginTop: "5px", marginLeft: "10px" }}
+        <Divider/>
+        <Typography
+          gutterBottom
+          variant="body1"
+          component="div"
+          sx={{ textAlign: "center" }}
         >
-          {buttons}
-        </ButtonGroup> */}
-
+          {student_company?.student_id}
+          </Typography>  
         <Button size="medium" variant="contained" onClick={() => navigate(`/getStudent/${student_company?._id}`)}>
           More Info
         </Button>
