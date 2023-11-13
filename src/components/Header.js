@@ -31,11 +31,22 @@ function Header() {
   return (
     <AppBar position="sticky" style={{ backgroundColor: "#2B2442" }}>
       <Toolbar>
-      {email && (
+        {email && (
           <TemporaryDrawer logoutHandler={logoutHandler} />
         )}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 2 }}>
-          Placement Cell
+          {
+            email ?
+
+              <span onClick={() => navigate('/aboutus')} style={{ cursor: 'pointer' }}>
+                Placement Cell
+              </span>
+              :
+              <span onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                Placement Cell
+              </span>
+          }
+
         </Typography>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button color="inherit" style={{ minWidth: '16vh' }} onClick={() => navigate('/contactus')}>Contact Us</Button>
