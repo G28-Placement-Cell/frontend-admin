@@ -31,7 +31,9 @@ function RegStudentProfile() {
   useEffect(() => {
     // Filter the data based on the search term
     const filtered = regStudentData.filter((student) =>
-      student.name.toLowerCase().includes(searchTerm.toLowerCase())
+      student.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      student.student_id.toLowerCase().includes(searchTerm.toLowerCase())
+
     );
     setFilteredData(filtered);
   }, [searchTerm, regStudentData]);
