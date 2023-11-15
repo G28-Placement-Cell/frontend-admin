@@ -26,7 +26,7 @@ const AnnouncementSection = ({ title }) => {
   const [filteredAnnouncements, setFilteredAnnouncements] = useState([]); // add filtered state
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/announcements/admin/company', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/announcements/admin/company', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -46,8 +46,7 @@ const AnnouncementSection = ({ title }) => {
 
   const handleSearch = (value) => {
 
-    if(!value)
-    {
+    if (!value) {
       setSearchInput(value);
       setFilteredAnnouncements(announcements);
       return;
@@ -124,7 +123,7 @@ const AnnouncementSection = ({ title }) => {
             )}
           />
         </div>
-        
+
         {loading ? (
           <p>Loading...</p>
         ) : announcements && announcements.length > 0 ? (

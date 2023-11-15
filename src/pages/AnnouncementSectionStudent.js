@@ -27,7 +27,7 @@ const AnnouncementSection = ({ title }) => {
   const [filteredAnnouncements, setFilteredAnnouncements] = useState([]); // Add filteredAnnouncements state
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/announcements/admin/student", {
+    fetch("https://back-end-production-ee2f.up.railway.app/api/announcements/admin/student", {
       method: "GET",
       headers: {
         "content-type": "application/json",

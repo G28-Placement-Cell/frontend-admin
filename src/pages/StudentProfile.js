@@ -13,7 +13,7 @@ function StudentProfile() {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -32,13 +32,13 @@ function StudentProfile() {
   const handleclick = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
-    // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
+    // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //   },
     // });
     // console.log(res);
-    window.open(`http://localhost:8000/api/student/files/${fileid}`);
+    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`);
   }
 
   // useEffect(() => {

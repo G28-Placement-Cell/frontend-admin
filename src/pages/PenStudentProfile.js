@@ -12,7 +12,7 @@ function StudentProfile() {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/student/getpenstudent", {
+    fetch("https://back-end-production-ee2f.up.railway.app/api/student/getpenstudent", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -34,7 +34,7 @@ function StudentProfile() {
   useEffect(() => {
     // Filter the data based on the search term
     const filtered = studentData.filter((student) =>
-      student.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.student_id.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);

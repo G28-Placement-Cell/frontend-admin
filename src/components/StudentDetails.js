@@ -6,55 +6,55 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function PendingStudent ()  {
+function PendingStudent() {
 
-    
 
-    const {id} = useParams();
-    console.log(id);
 
-    const options = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-      };
-    
-      const [student_company, setCompany] = useState({});//student object
-      const [loading, setLoading] = useState(true);//loading state
-    
-      useEffect(() => {
-        console.log(localStorage.getItem('token'));
-        fetch(`http://localhost:8000/api/admin/getStudent/${id}`, {
-          method: 'GET',
-          headers: {
-            'content-type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          },
-        }).then((res) => res.json()).then((data) => {
-          console.log(data);
-          setCompany(data.student);
-          setLoading(false);
-        }).catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
-      }, []);
+  const { id } = useParams();
+  console.log(id);
 
-      const handleclick = async () => {
-        // const studentid = localStorage.getItem('studentinfo.student_id');
-        const fileid = student_company?.resume;
-        // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
-        //   headers: {
-        //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-        //   },
-        // });
-        // console.log(res);
-        window.open(`http://localhost:8000/api/student/files/${fileid}`);
-      }
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
 
-      if (!student_company) return<>loading</>
-  
-      return (
+  const [student_company, setCompany] = useState({});//student object
+  const [loading, setLoading] = useState(true);//loading state
+
+  useEffect(() => {
+    console.log(localStorage.getItem('token'));
+    fetch(`https://back-end-production-ee2f.up.railway.app/api/admin/getStudent/${id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    }).then((res) => res.json()).then((data) => {
+      console.log(data);
+      setCompany(data.student);
+      setLoading(false);
+    }).catch((err) => {
+      console.log(err);
+      setLoading(false);
+    });
+  }, []);
+
+  const handleclick = async () => {
+    // const studentid = localStorage.getItem('studentinfo.student_id');
+    const fileid = student_company?.resume;
+    // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
+    //   headers: {
+    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //   },
+    // });
+    // console.log(res);
+    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`);
+  }
+
+  if (!student_company) return <>loading</>
+
+  return (
     <div className="container" >
       <div className="main-body">
         <div className="row gutters-sm">

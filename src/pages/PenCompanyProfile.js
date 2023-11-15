@@ -10,7 +10,7 @@ function PenCompanyProfile() {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/company/getpencompany", {
+    fetch("https://back-end-production-ee2f.up.railway.app/api/company/getpencompany", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -40,12 +40,12 @@ function PenCompanyProfile() {
   return (
     <Paper sx={{ py: 1, px: 3 }} className="container">
       <TextField
-          label="Search"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+        label="Search"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
 
       <div
@@ -58,10 +58,10 @@ function PenCompanyProfile() {
       >
         {loading ? (
           <p>Loading...</p>
-        ) : companyData.length === 0 ? ( 
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'50vh'}}>
-          <Typography variant="h6">No pending company profiles</Typography>
-        </div>
+        ) : companyData.length === 0 ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+            <Typography variant="h6">No pending company profiles</Typography>
+          </div>
         ) : (
           filteredData.map((company, index) => (
             <PendingCard key={index} student_company={company} />

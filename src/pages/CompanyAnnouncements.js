@@ -18,11 +18,11 @@ const AnnouncementSection = ({ title }) => {
   const [filteredAnnouncements, setFilteredAnnouncements] = useState([]); // Add filteredAnnouncements state
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  
+
 
   useEffect(() => {
     fetch(
-      "http://localhost:8000/api/announcements/admin/companyAnnouncements",
+      "https://back-end-production-ee2f.up.railway.app/api/announcements/admin/companyAnnouncements",
       {
         method: "GET",
         headers: {
@@ -48,14 +48,14 @@ const AnnouncementSection = ({ title }) => {
 
         // Fetch company names for each unique company ID
         const fetchCompanyNames = uniqueCompanyIds.map((companyId) =>
-          fetch(`http://localhost:8000/api/company/name/${companyId}`, {
+          fetch(`https://back-end-production-ee2f.up.railway.app/api/company/name/${companyId}`, {
             method: "GET",
             headers: {
               "content-type": "application/json",
             },
           }).then((res) => res.json())
         );
-        
+
         // Wait for all company name fetches to complete
         Promise.all(fetchCompanyNames).then((companyData) => {
           const companyMap = {};
@@ -90,7 +90,7 @@ const AnnouncementSection = ({ title }) => {
     if (!searchTerm) {
       setFilteredData(announcements);
       return;
-    }    
+    }
     const filtered = announcements.filter((announcements) =>
       announcements.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
