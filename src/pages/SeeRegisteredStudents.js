@@ -122,7 +122,7 @@ export const Tablet = () => {
               <StyledTableCell align="left">NAME</StyledTableCell>
               <StyledTableCell align="left">CPI</StyledTableCell>
               <StyledTableCell align="right">RESUME</StyledTableCell>
-              <StyledTableCell align="right">ACTION</StyledTableCell>
+              {/* <StyledTableCell align="right">ACTION</StyledTableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -149,13 +149,13 @@ export const Tablet = () => {
                     SEE RESUME
                   </Button>
                 </StyledTableCell>
-                <StyledTableCell align="right">
+                {/* <StyledTableCell align="right">
                   <SelDeselButton
                     stuId={row._id}
                     jobId={jobId}
                     shortlisted={selected.some(student => student === row?._id)}
                   />
-                </StyledTableCell>
+                </StyledTableCell> */}
               </StyledTableRow>
             ))}
           </TableBody>

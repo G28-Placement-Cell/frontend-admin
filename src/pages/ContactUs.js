@@ -23,14 +23,14 @@ function ContactUs() {
                 <i className="fa fa-mobile" aria-hidden="true" id="number1"></i>
                 <h4 className="d-inline-block">PHONE :
                   <br />
-                  <span>+12457836913 , +12457836913</span></h4>
+                  <span>+918160004051 , +917265068992</span></h4>
               </div>
               {/* Info-2 */}
               <div className="info">
                 <i className="fa fa-envelope-o" aria-hidden="true"></i>
                 <h4 className="d-inline-block">EMAIL :
                   <br />
-                  <span> placement@daiict.ac.in</span></h4>
+                  <span> g28.placement@gmail.com</span></h4>
               </div>
               {/* Info-3 */}
               <div className="info">
