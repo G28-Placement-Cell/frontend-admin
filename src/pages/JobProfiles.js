@@ -1,4 +1,5 @@
 const React = require("react");
+
 const { useState, useEffect } = require("react");
 const {
   Typography,
@@ -9,14 +10,16 @@ const {
   ListItemText,
   Fab,
 } = require("@mui/material");
-const { Link } = require("react-router-dom");
+const { Link , useNavigate} = require("react-router-dom");
 
 const JobProfiles = () => {
   const [jobProfiles, setJobProfiles] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
+  const companyInfoJSON = localStorage.getItem('companyInfo');
+  const companyInfo = JSON.parse(companyInfoJSON);
+  const _id = companyInfo?._id;
   useEffect(() => {
     fetch("https://back-end-production-ee2f.up.railway.app/api/jobprofile", {
       method: "GET",
@@ -53,7 +56,8 @@ const JobProfiles = () => {
   // );
   // setFilteredData(filtered);
   // }, [searchTerm]);
-
+  const navigate = useNavigate();
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
   useEffect(() => {
     if (!searchTerm) {
       setFilteredData(jobProfiles);
@@ -162,7 +166,7 @@ const JobProfiles = () => {
                               <h6 className="mb-0">Registration Starts from</h6>
                             </div>
                             <div className="col-sm-9 text-secondary">
-                              {jobProfile.registration_start_date}
+                            {new Date(jobProfile.registration_start_date).toLocaleDateString('en-GB', options)}
                             </div>
                           </div>
                           <hr />
@@ -171,7 +175,7 @@ const JobProfiles = () => {
                               <h6 className="mb-0">Registration Closes at</h6>
                             </div>
                             <div className="col-sm-9 text-secondary">
-                              {jobProfile.registration_start_date}
+                            {new Date(jobProfile.registration_end_date).toLocaleDateString('en-GB', options)}
                             </div>
                           </div>
                           <hr />
@@ -232,13 +236,7 @@ const JobProfiles = () => {
                               // gap:'10px'
                             }}
                           >
-                            <button
-                              style={{
-                                backgroundColor: "#2B2442",
-                                width: "200px",
-                                borderRadius: "5px",
-                              }}
-                            >
+                            <button onClick={() => navigate(`/seeregistered/${jobProfile._id}`)} style={{ backgroundColor: '#2B2442', width: '200px', borderRadius: '5px' }}>
                               See registered students
                             </button>
                             <Link to={`/editpost/${jobProfile.id}`}>

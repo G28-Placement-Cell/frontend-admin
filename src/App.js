@@ -9,6 +9,7 @@ import ChangePassword from './pages/ChangePassword';
 import ResetPassword from './pages/ResetPassword';
 import RegStudentProfile from './pages/RegStudentProfile';
 import PenCompanyProfile from './pages/PenCompanyProfile';
+import SeeRegistered from './pages/SeeRegisteredStudents';
 import AdminLogin from './pages/AdminLogin';
 import { ToastContainer } from 'react-toastify';
 import RegCompanyProfile from './pages/RegCompanyProfiles';
@@ -47,6 +48,7 @@ function App() {
             <Route path='/AnnouncementsByCompany' element={<CompanyAnnouncements />} />
             <Route path='/getStudent/:id' element={<PendingStudent />} />
             <Route path='/getCompany/:id' element={<PendingCompany />} />
+            <Route path='/seeregistered/:id' element={<SeeRegistered />} />
             <Route path='/jobProfiles' element={<JobProfiles />} />
             <Route path='/aboutus' element={<AboutUs />} />
             <Route path='/contactus' element={<ContactUs />} />
