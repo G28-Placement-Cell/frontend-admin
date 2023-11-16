@@ -54,12 +54,12 @@ const AcceptedCard = ({ student_company }) => {
         // borderRadius: "10px",
       }}
     >
-      <CardMedia
+      {/* <CardMedia
         component="img"
         height="180"
         alt={student_company.companyname}
-        image={student_company.photoUrl}
-      />
+        // image={student_company.photoUrl}
+      /> */}
       <CardContent className="cardContent">
         <Typography
           gutterBottom

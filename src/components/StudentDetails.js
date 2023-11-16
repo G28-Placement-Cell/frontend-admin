@@ -70,11 +70,14 @@ function PendingStudent() {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src={url} alt="Admin" className="rounded-circle" width={150} />
+                  <img src={url} alt="Admin" className="rounded-circle" width={150} height={150} />
                   <div className="mt-3">
                     <h4 id='student_name'>{student_company?.name?.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student_company?.student_id}</p>
-                    <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p>
+                    {/* <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p> */}
+                    {
+                      student_company?.verified ? <p id="verify" className="text-muted font-size-sm">APPROVED </p> : <p id="verify" className="text-muted font-size-sm">NOT APPROVED </p>
+                    }
                   </div>
                 </div>
               </div>

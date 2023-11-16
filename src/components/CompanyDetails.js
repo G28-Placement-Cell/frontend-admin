@@ -55,7 +55,7 @@ function PendingCompany() {
     //   }
 
     if (!company) return <>loading</>
-
+    console.log(company);
     return (
         <div
             style={{
@@ -73,7 +73,7 @@ function PendingCompany() {
                         <div className="d-flex flex-column align-items-center text-center" style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
                             <div className="mt-3">
-                                <h4>Company Logo</h4>
+                                <h4>{company?.companyname}</h4>
                             </div>
                         </div>
                     </div>
@@ -89,10 +89,19 @@ function PendingCompany() {
                     <hr />
                     <div className="row">
                         <div className="col-sm-3">
-                            <h6 className="mb-0">Type (Job/SI)</h6>
+                            <h6 className="mb-0">Contact</h6>
                         </div>
                         <div className="col-sm-9 text-secondary">
-                            {company?.company_type}
+                            {company?.contact}
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                        <div className="col-sm-3">
+                            <h6 className="mb-0">Email</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                            {company?.email}
                         </div>
                     </div>
                     <hr />
@@ -114,7 +123,7 @@ function PendingCompany() {
                         </div>
                     </div>
                     <hr />
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-sm-3">
                             <h6 className="mb-0">Company Type</h6>
                         </div>
@@ -122,7 +131,7 @@ function PendingCompany() {
                             {company?.company_type}
                         </div>
                     </div>
-                    <hr />
+                    <hr /> */}
                 </div>
             </Paper>
         </div>

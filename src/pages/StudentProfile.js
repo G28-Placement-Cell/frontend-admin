@@ -81,8 +81,11 @@ function StudentProfile() {
                   <img src={url} alt="Admin" className="rounded-circle" width={150} />
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name}</h4>
-                    <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
-                    <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p>
+                    <p id="student id" className="text-secondary mb-1">{student?.student_id}  </p>
+                    {/* <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p> */}
+                    {
+                      student?.is_verified ? <p id="verify" className="text-muted font-size-sm">APPROVED </p> : <p id="verify" className="text-muted font-size-sm">NOT APPROVED </p>
+                    }
                   </div>
                 </div>
               </div>
