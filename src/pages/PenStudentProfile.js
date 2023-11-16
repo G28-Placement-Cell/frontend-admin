@@ -31,6 +31,7 @@ function StudentProfile() {
       });
   }, []);
 
+  console.log(studentData)
   useEffect(() => {
     // Filter the data based on the search term
     const filtered = studentData.filter((student) =>

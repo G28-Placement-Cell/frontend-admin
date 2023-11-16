@@ -28,6 +28,8 @@ function RegStudentProfile() {
       });
   }, []);
 
+  console.log(regStudentData)
+
   useEffect(() => {
     // Filter the data based on the search term
     const filtered = regStudentData.filter((student) =>

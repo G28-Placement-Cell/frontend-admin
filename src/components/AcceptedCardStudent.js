@@ -11,8 +11,8 @@ import { ButtonGroup, Divider } from "@mui/material";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRejectMutation } from "../slices/adminApislice";
-import PendingStudent  from "./StudentDetails";
-import { Link,useNavigate } from "react-router-dom";
+import PendingStudent from "./StudentDetails";
+import { Link, useNavigate } from "react-router-dom";
 
 const AcceptedCard = ({ student_company }) => {
 
@@ -31,7 +31,16 @@ const AcceptedCard = ({ student_company }) => {
       toast.error(err?.data?.message || err.error)
     }
   }
+  let url;
+  if (student_company?.profile_pic === undefined) {
+    url = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+  }
+  else {
+    const profilepic = student_company?.profile_pic;
+    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+  }
 
+  console.log(student_company)
   const navigate = useNavigate();
 
   return (
@@ -52,8 +61,11 @@ const AcceptedCard = ({ student_company }) => {
       <CardMedia
         component="img"
         height="180"
+        width="180"
         alt={student_company.name}
-        image={student_company.photoUrl}
+        // image={student_company.photoUrl}
+        image={url}
+      // {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} height={150} />}
       />
       <CardContent className="cardContent">
         <Typography
@@ -64,7 +76,7 @@ const AcceptedCard = ({ student_company }) => {
         >
           {student_company?.name}
         </Typography>
-        <Divider/>
+        <Divider />
         <Typography
           gutterBottom
           variant="body1"
@@ -72,7 +84,7 @@ const AcceptedCard = ({ student_company }) => {
           sx={{ textAlign: "center" }}
         >
           {student_company?.student_id}
-          </Typography>  
+        </Typography>
         <Button size="medium" variant="contained" onClick={() => navigate(`/getStudent/${student_company?._id}`)}>
           More Info
         </Button>

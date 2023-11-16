@@ -31,11 +31,11 @@ function PendingStudent() {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
     }).then((res) => res.json()).then((data) => {
-      console.log(data);
+      // console.log(data);
       setCompany(data.student);
       setLoading(false);
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       setLoading(false);
     });
   }, []);
@@ -54,6 +54,14 @@ function PendingStudent() {
 
   if (!student_company) return <>loading</>
 
+  let url;
+  if (student_company?.profile_pic === undefined) {
+    url = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+  }
+  else {
+    const profilepic = student_company?.profile_pic;
+    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+  }
   return (
     <div className="container" >
       <div className="main-body">
@@ -62,7 +70,7 @@ function PendingStudent() {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
+                  <img src={url} alt="Admin" className="rounded-circle" width={150} />
                   <div className="mt-3">
                     <h4 id='student_name'>{student_company?.name?.toUpperCase()}</h4>
                     <p id="student id" className="text-secondary mb-1">{student_company?.student_id}</p>

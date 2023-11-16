@@ -29,6 +29,19 @@ function StudentProfile() {
     });
   }, []);
 
+  console.log('ok');
+  // console.log()
+  let url;
+  if (student?.profile_pic === undefined) {
+    console.log('no');
+    url = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+  }
+  else {
+    const profilepic = student?.profile_pic;
+    console.log('yes');
+    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+  }
+  console.log({ url });
   const handleclick = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
@@ -65,7 +78,7 @@ function StudentProfile() {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
+                  <img src={url} alt="Admin" className="rounded-circle" width={150} />
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name}</h4>
                     <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
