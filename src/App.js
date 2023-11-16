@@ -6,8 +6,10 @@ import StudentProfile from './pages/PenStudentProfile';
 import AnnouncementSectionStudent from './pages/AnnouncementSectionStudent';
 import AnnouncementSectionCompany from './pages/AnnouncementSectionCompany';
 import ChangePassword from './pages/ChangePassword';
+import ResetPassword from './pages/ResetPassword';
 import RegStudentProfile from './pages/RegStudentProfile';
 import PenCompanyProfile from './pages/PenCompanyProfile';
+import SeeRegistered from './pages/SeeRegisteredStudents';
 import AdminLogin from './pages/AdminLogin';
 import { ToastContainer } from 'react-toastify';
 import RegCompanyProfile from './pages/RegCompanyProfiles';
@@ -18,6 +20,10 @@ import PendingStudent from './components/StudentDetails';
 import PendingCompany from './components/CompanyDetails';
 import JobProfiles from './pages/JobProfiles';
 import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import ForgotPass from './pages/ForgotPass';
+import Reset from './pages/Reset';
+import LogOut from './pages/LogOut';
 
 function App() {
 
@@ -36,14 +42,19 @@ function App() {
             <Route path='/StudentAnnouncements' element={<AnnouncementSectionStudent />} />
             <Route path='/CompanyAnnouncements' element={<AnnouncementSectionCompany />} />
             <Route path='/changepassword' element={<ChangePassword />} />
+            <Route path='/resetpassword' element={<ResetPassword />} />
             <Route path='/addAnnouncementCompany' element={<AddAnnouncementCompany />} />
             <Route path='/addAnnouncementStudent' element={<AddAnnouncementStudent />} />
             <Route path='/AnnouncementsByCompany' element={<CompanyAnnouncements />} />
             <Route path='/getStudent/:id' element={<PendingStudent />} />
             <Route path='/getCompany/:id' element={<PendingCompany />} />
+            <Route path='/seeregistered/:id' element={<SeeRegistered />} />
             <Route path='/jobProfiles' element={<JobProfiles />} />
-            <Route path='/aboutus' element={<AboutUs />}/>
-            <Route path='/logout' />
+            <Route path='/aboutus' element={<AboutUs />} />
+            <Route path='/contactus' element={<ContactUs />} />
+            <Route path='/logout' element={<LogOut />} />
+            <Route path='/forgotpassword' element={<ForgotPass />} />
+            <Route path='/resetpassword' element={<Reset />} />
           </Routes>
         </div>
         <Footer />

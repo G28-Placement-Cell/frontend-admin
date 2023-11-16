@@ -26,7 +26,7 @@ function PendingCompany() {
 
     useEffect(() => {
         console.log(localStorage.getItem('token'));
-        fetch(`http://localhost:8000/api/admin/getCompany/${id}`, {
+        fetch(`https://back-end-production-ee2f.up.railway.app/api/admin/getCompany/${id}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -45,17 +45,17 @@ function PendingCompany() {
     //   const handleclick = async () => {
     //     // const studentid = localStorage.getItem('studentinfo.student_id');
     //     const fileid = student_company?.resume;
-    //     // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
+    //     // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
     //     //   headers: {
     //     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //     //   },
     //     // });
     //     // console.log(res);
-    //     window.open(`http://localhost:8000/api/student/files/${fileid}`);
+    //     window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`);
     //   }
 
     if (!company) return <>loading</>
-
+    console.log(company);
     return (
         <div
             style={{
@@ -68,16 +68,16 @@ function PendingCompany() {
         >
             <Paper sx={{ py: 1, px: 3, width: '90vw' }} className="container1">
                 <div className="card-body">
-                    
-                        <div className="card-body">
-                            <div className="d-flex flex-column align-items-center text-center" style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
-                                <div className="mt-3">
-                                    <h4>Company Logo</h4>
-                                </div>
+
+                    <div className="card-body">
+                        <div className="d-flex flex-column align-items-center text-center" style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
+                            <div className="mt-3">
+                                <h4>{company?.companyname}</h4>
                             </div>
                         </div>
-                    <hr/ >
+                    </div>
+                    <hr />
                     <div className="row">
                         <div className="col-sm-3">
                             <h6 className="mb-0">Company Name</h6>
@@ -89,10 +89,19 @@ function PendingCompany() {
                     <hr />
                     <div className="row">
                         <div className="col-sm-3">
-                            <h6 className="mb-0">Type (Job/SI)</h6>
+                            <h6 className="mb-0">Contact</h6>
                         </div>
                         <div className="col-sm-9 text-secondary">
-                            {company?.company_type}
+                            {company?.contact}
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="row">
+                        <div className="col-sm-3">
+                            <h6 className="mb-0">Email</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                            {company?.email}
                         </div>
                     </div>
                     <hr />
@@ -114,7 +123,7 @@ function PendingCompany() {
                         </div>
                     </div>
                     <hr />
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-sm-3">
                             <h6 className="mb-0">Company Type</h6>
                         </div>
@@ -122,7 +131,7 @@ function PendingCompany() {
                             {company?.company_type}
                         </div>
                     </div>
-                    <hr />
+                    <hr /> */}
                 </div>
             </Paper>
         </div>

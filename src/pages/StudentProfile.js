@@ -13,7 +13,7 @@ function StudentProfile() {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch('http://localhost:8000/api/student/profile', {
+    fetch('https://back-end-production-ee2f.up.railway.app/api/student/profile', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -29,16 +29,29 @@ function StudentProfile() {
     });
   }, []);
 
+  console.log('ok');
+  // console.log()
+  let url;
+  if (student?.profile_pic === undefined) {
+    console.log('no');
+    url = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+  }
+  else {
+    const profilepic = student?.profile_pic;
+    console.log('yes');
+    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+  }
+  console.log({ url });
   const handleclick = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student?.resume;
-    // const res = await axios.get(`http://localhost:8000/api/student/files/${fileid}`, {
+    // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //   },
     // });
     // console.log(res);
-    window.open(`http://localhost:8000/api/student/files/${fileid}`);
+    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`);
   }
 
   // useEffect(() => {
@@ -65,11 +78,14 @@ function StudentProfile() {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
+                  <img src={url} alt="Admin" className="rounded-circle" width={150} />
                   <div className="mt-3">
                     <h4 id='student_name'>{student?.name}</h4>
-                    <p id="student id" className="text-secondary mb-1">{student?.student_id}</p>
-                    <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p>
+                    <p id="student id" className="text-secondary mb-1">{student?.student_id}  </p>
+                    {/* <p id="verify" className="text-muted font-size-sm">Your profile is APPROVED </p> */}
+                    {
+                      student?.is_verified ? <p id="verify" className="text-muted font-size-sm">APPROVED </p> : <p id="verify" className="text-muted font-size-sm">NOT APPROVED </p>
+                    }
                   </div>
                 </div>
               </div>

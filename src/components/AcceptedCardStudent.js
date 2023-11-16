@@ -7,12 +7,12 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from '@mui/material/Stack';
-import { ButtonGroup } from "@mui/material";
+import { ButtonGroup, Divider } from "@mui/material";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRejectMutation } from "../slices/adminApislice";
-import PendingStudent  from "./StudentDetails";
-import { Link,useNavigate } from "react-router-dom";
+import PendingStudent from "./StudentDetails";
+import { Link, useNavigate } from "react-router-dom";
 
 const AcceptedCard = ({ student_company }) => {
 
@@ -31,7 +31,16 @@ const AcceptedCard = ({ student_company }) => {
       toast.error(err?.data?.message || err.error)
     }
   }
+  let url;
+  if (student_company?.profile_pic === undefined) {
+    url = 'https://bootdey.com/img/Content/avatar/avatar7.png';
+  }
+  else {
+    const profilepic = student_company?.profile_pic;
+    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+  }
 
+  console.log(student_company)
   const navigate = useNavigate();
 
   return (
@@ -45,15 +54,18 @@ const AcceptedCard = ({ student_company }) => {
         alignItems: "center",
         bgcolor: "secondary.contrastText",
         color: "secondary.main",
-        // boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
+        boxShadow: "10px 10px 10px 0 rgba(0,0,0,0.2)",
         // borderRadius: "10px",
       }}
     >
       <CardMedia
         component="img"
         height="180"
+        width="180"
         alt={student_company.name}
-        image={student_company.photoUrl}
+        // image={student_company.photoUrl}
+        image={url}
+      // {student && profilefileid && <img src={`http://localhost:8000/api/student/files/profilepic/${profilefileid}`} alt="Admin" className="rounded-circle" width={150} height={150} />}
       />
       <CardContent className="cardContent">
         <Typography
@@ -62,16 +74,17 @@ const AcceptedCard = ({ student_company }) => {
           component="div"
           sx={{ textAlign: "center" }}
         >
-          {student_company.name}
+          {student_company?.name}
         </Typography>
-        {/* <ButtonGroup
-          size="small"
-          variant="contained"
-          style={{ marginTop: "5px", marginLeft: "10px" }}
+        <Divider />
+        <Typography
+          gutterBottom
+          variant="body1"
+          component="div"
+          sx={{ textAlign: "center" }}
         >
-          {buttons}
-        </ButtonGroup> */}
-
+          {student_company?.student_id}
+        </Typography>
         <Button size="medium" variant="contained" onClick={() => navigate(`/getStudent/${student_company?._id}`)}>
           More Info
         </Button>

@@ -37,7 +37,7 @@ const AddAnnouncement = () => {
         console.log(newAnnouncement);
 
         try {
-            const res = await fetch("http://localhost:8000/api/announcements/admin/student", {
+            const res = await fetch("https://back-end-production-ee2f.up.railway.app/api/announcements/admin/student", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -77,7 +77,7 @@ const AddAnnouncement = () => {
         // Replace with your actual API call
         async function fetchAnnouncements() {
             try {
-                const response = await fetch("http://localhost:8000/api/announcements");
+                const response = await fetch("https://back-end-production-ee2f.up.railway.app/api/announcements");
                 if (response.ok) {
                     const data = await response.json();
                     setAnnouncements(data);
@@ -124,7 +124,7 @@ const AddAnnouncement = () => {
                     </Button>
                 </div>
             </form>
-           
+
         </Paper>
     );
 };

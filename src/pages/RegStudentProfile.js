@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import AcceptedCard from "../components/AcceptedCardStudent";
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography, TextField } from "@mui/material";
 
 function RegStudentProfile() {
   const [regStudentData, setRegStudentData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/student/getregstudent", {
+    fetch("https://back-end-production-ee2f.up.railway.app/api/student/getregstudent", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -26,8 +28,28 @@ function RegStudentProfile() {
       });
   }, []);
 
+  console.log(regStudentData)
+
+  useEffect(() => {
+    // Filter the data based on the search term
+    const filtered = regStudentData.filter((student) =>
+      student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.student_id.toLowerCase().includes(searchTerm.toLowerCase())
+
+    );
+    setFilteredData(filtered);
+  }, [searchTerm, regStudentData]);
+
   return (
-    <Paper sx={{ py: 1, px: 3 }} className="container" >
+    <Paper sx={{ py: 1, px: 3 }} className="container">
+      <TextField
+        label="Search"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
       <div
         style={{
@@ -39,14 +61,14 @@ function RegStudentProfile() {
       >
         {loading ? ( // Display a loading message while loading
           <p>Loading...</p>
-        ) : regStudentData && regStudentData.length > 0 ? (
-          regStudentData.map((student, index) => (
+        ) : filteredData && filteredData.length > 0 ? (
+          filteredData.map((student, index) => (
             <AcceptedCard key={index} student_company={student} />
           ))
         ) : (
-          <div style={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'50vh'}}>
-          <Typography variant="h6">No registered student profiles</Typography>
-        </div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+            <Typography variant="h6">No matching profiles found</Typography>
+          </div>
         )}
       </div>
     </Paper>

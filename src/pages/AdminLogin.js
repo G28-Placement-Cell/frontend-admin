@@ -109,7 +109,7 @@ function AdminLogin() {
                                 </Button>
 
                                 {/* Forgot Password link */}
-                                <a href="#" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
+                                <a href="/forgotpassword" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
                             </div>
                         </form>
                     </div>

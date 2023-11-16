@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
 import PendingCard from "../components/PendingCardCompany";
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography, TextField } from "@mui/material";
 
 function PenCompanyProfile() {
   const [companyData, setCompanyData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/company/getpencompany", {
+    fetch("https://back-end-production-ee2f.up.railway.app/api/company/getpencompany", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -27,8 +29,25 @@ function PenCompanyProfile() {
       });
   }, []);
 
+  useEffect(() => {
+    // Filter the data based on the search term
+    const filtered = companyData.filter((company) =>
+      company.companyname.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [searchTerm, companyData]);
+
   return (
     <Paper sx={{ py: 1, px: 3 }} className="container">
+      <TextField
+        label="Search"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
       <div
         style={{
           display: "flex",
@@ -37,14 +56,14 @@ function PenCompanyProfile() {
           margin: "10px",
         }}
       >
-        {loading ? ( // Display a loading message while loading
+        {loading ? (
           <p>Loading...</p>
-        ) : companyData.length === 0 ? ( // Display "No pending company profiles" if there are no elements
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center', minHeight:'50vh'}}>
-          <Typography variant="h6">No pending company profiles</Typography>
-        </div>
+        ) : companyData.length === 0 ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+            <Typography variant="h6">No pending company profiles</Typography>
+          </div>
         ) : (
-          companyData.map((company, index) => (
+          filteredData.map((company, index) => (
             <PendingCard key={index} student_company={company} />
           ))
         )}
