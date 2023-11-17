@@ -22,7 +22,7 @@ const AnnouncementSection = ({ title }) => {
 
   useEffect(() => {
     fetch(
-      "https://back-end-production-ee2f.up.railway.app/api/announcements/admin/companyAnnouncements",
+      "https://back-end-production-3140.up.railway.app/api/announcements/admin/companyAnnouncements",
       {
         method: "GET",
         headers: {
@@ -48,7 +48,7 @@ const AnnouncementSection = ({ title }) => {
 
         // Fetch company names for each unique company ID
         const fetchCompanyNames = uniqueCompanyIds.map((companyId) =>
-          fetch(`https://back-end-production-ee2f.up.railway.app/api/company/name/${companyId}`, {
+          fetch(`https://back-end-production-3140.up.railway.app/api/company/name/${companyId}`, {
             method: "GET",
             headers: {
               "content-type": "application/json",

@@ -10,7 +10,7 @@ function PenCompanyProfile() {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("https://back-end-production-ee2f.up.railway.app/api/company/getpencompany", {
+    fetch("https://back-end-production-3140.up.railway.app/api/company/getpencompany", {
       method: "GET",
       headers: {
         "content-type": "application/json",

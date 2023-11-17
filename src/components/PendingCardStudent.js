@@ -59,7 +59,7 @@ const PendingCard = ({ student_company }) => {
   }
   else {
     const profilepic = student_company?.profile_pic;
-    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+    url = `https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${profilepic}`
   }
 
   return (

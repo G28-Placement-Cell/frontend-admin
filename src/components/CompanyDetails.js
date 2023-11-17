@@ -26,7 +26,7 @@ function PendingCompany() {
 
     useEffect(() => {
         console.log(localStorage.getItem('token'));
-        fetch(`https://back-end-production-ee2f.up.railway.app/api/admin/getCompany/${id}`, {
+        fetch(`https://back-end-production-3140.up.railway.app/api/admin/getCompany/${id}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -45,13 +45,13 @@ function PendingCompany() {
     //   const handleclick = async () => {
     //     // const studentid = localStorage.getItem('studentinfo.student_id');
     //     const fileid = student_company?.resume;
-    //     // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
+    //     // const res = await axios.get(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`, {
     //     //   headers: {
     //     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //     //   },
     //     // });
     //     // console.log(res);
-    //     window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`);
+    //     window.open(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`);
     //   }
 
     if (!company) return <>loading</>

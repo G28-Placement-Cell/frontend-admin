@@ -24,7 +24,7 @@ function PendingStudent() {
 
   useEffect(() => {
     console.log(localStorage.getItem('token'));
-    fetch(`https://back-end-production-ee2f.up.railway.app/api/admin/getStudent/${id}`, {
+    fetch(`https://back-end-production-3140.up.railway.app/api/admin/getStudent/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -43,13 +43,13 @@ function PendingStudent() {
   const handleclick = async () => {
     // const studentid = localStorage.getItem('studentinfo.student_id');
     const fileid = student_company?.resume;
-    // const res = await axios.get(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`, {
+    // const res = await axios.get(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`, {
     //   headers: {
     //     'Authorization': `Bearer ${localStorage.getItem('token')}`
     //   },
     // });
     // console.log(res);
-    window.open(`https://back-end-production-ee2f.up.railway.app/api/student/files/${fileid}`);
+    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`);
   }
 
   if (!student_company) return <>loading</>
@@ -60,7 +60,7 @@ function PendingStudent() {
   }
   else {
     const profilepic = student_company?.profile_pic;
-    url = `https://back-end-production-ee2f.up.railway.app/api/student/files/profilepic/${profilepic}`
+    url = `https://back-end-production-3140.up.railway.app/api/student/files/profilepic/${profilepic}`
   }
   return (
     <div className="container" >

@@ -12,7 +12,7 @@ function StudentProfile() {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("https://back-end-production-ee2f.up.railway.app/api/student/getpenstudent", {
+    fetch("https://back-end-production-3140.up.railway.app/api/student/getpenstudent", {
       method: "GET",
       headers: {
         "content-type": "application/json",

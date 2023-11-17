@@ -39,7 +39,7 @@ const AddAnnouncement = () => {
         console.log(newAnnouncement);
 
         try {
-            const res = await fetch("https://back-end-production-ee2f.up.railway.app/api/announcements/admin/company", {
+            const res = await fetch("https://back-end-production-3140.up.railway.app/api/announcements/admin/company", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
