@@ -21,7 +21,7 @@ const JobProfiles = () => {
   const companyInfo = JSON.parse(companyInfoJSON);
   const _id = companyInfo?._id;
   useEffect(() => {
-    fetch("https://back-end-production-ee2f.up.railway.app/api/jobprofile", {
+    fetch("https://back-end-production-3140.up.railway.app/api/jobprofile", {
       method: "GET",
       headers: {
         "content-type": "application/json",

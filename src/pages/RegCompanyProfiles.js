@@ -10,7 +10,7 @@ function RegCompanyProfile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://back-end-production-ee2f.up.railway.app/api/company/getregcompany", {
+    fetch("https://back-end-production-3140.up.railway.app/api/company/getregcompany", {
       method: "GET",
       headers: {
         "content-type": "application/json",
