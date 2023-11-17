@@ -24,4 +24,4 @@ const ProfileCard = ({ name, username, imageSrc, socialLinks }) => {
     );
 };
 
-export default ProfileCard;
+export default ProfileCard;
