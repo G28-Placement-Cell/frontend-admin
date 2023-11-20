@@ -42,6 +42,9 @@ function RegStudentProfile() {
 
   return (
     <Paper sx={{ py: 1, px: 3 }} className="container">
+      <Typography variant="h4" style={{ textAlign: "center", mt:2, mb:1 }}>
+        Verified Students
+      </Typography>
       <TextField
         label="Search"
         variant="outlined"
