@@ -74,4 +74,16 @@ export const SidebarData = [
     icon: <LogoutRoundedIcon />,
     cName: "nav-text",
   },
+  // {
+  //   title: "About Us",
+  //   path: "/aboutus",
+  //   icon: <IoIcons.IoMdHelpCircle />,
+  //   cName: "nav-text",
+  // },
+  // {
+  //   title: "Contact Us",
+  //   path: "/contactus",
+  //   icon: <BiIcons.BiPhoneCall />,
+  //   cName: "nav-text",
+  // },
 ];

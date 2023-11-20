@@ -10,7 +10,7 @@ const {
   ListItemText,
   Fab,
 } = require("@mui/material");
-const { Link , useNavigate} = require("react-router-dom");
+const { Link, useNavigate } = require("react-router-dom");
 
 const JobProfiles = () => {
   const [jobProfiles, setJobProfiles] = useState([]);
@@ -41,11 +41,11 @@ const JobProfiles = () => {
   }, []);
 
   // Simulate loading for 2 seconds (you should replace this with your actual data fetching code)
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  // }, []);
 
   // useEffect(() => {
   // // Filter the data based on the search term
@@ -166,7 +166,7 @@ const JobProfiles = () => {
                               <h6 className="mb-0">Registration Starts from</h6>
                             </div>
                             <div className="col-sm-9 text-secondary">
-                            {new Date(jobProfile.registration_start_date).toLocaleDateString('en-GB', options)}
+                              {new Date(jobProfile.registration_start_date).toLocaleDateString('en-GB', options)}
                             </div>
                           </div>
                           <hr />
@@ -175,7 +175,7 @@ const JobProfiles = () => {
                               <h6 className="mb-0">Registration Closes at</h6>
                             </div>
                             <div className="col-sm-9 text-secondary">
-                            {new Date(jobProfile.registration_end_date).toLocaleDateString('en-GB', options)}
+                              {new Date(jobProfile.registration_end_date).toLocaleDateString('en-GB', options)}
                             </div>
                           </div>
                           <hr />
@@ -228,29 +228,37 @@ const JobProfiles = () => {
                           color="text.secondary"
                         >
                           <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "flex-end",
-                              alignItems: "flex-end",
-                              marginTop: "10px",
-                              // gap:'10px'
-                            }}
+                            // style={{
+                            //   display: "flex",
+                            //   justifyContent: "flex-end",
+                            //   alignItems: "flex-end",
+                            //   marginTop: "10px",
+                            //   // gap:'10px'
+                            // }}
+                            className="row"
+                            style={{width:'100%'}}
                           >
-                            <button onClick={() => navigate(`/seeregistered/${jobProfile._id}`)} style={{ backgroundColor: '#2B2442', width: '200px', borderRadius: '5px' }}>
-                              See registered students
-                            </button>
-                            <Link to={`/editpost/${jobProfile.id}`}>
-                              <button
-                                style={{
-                                  backgroundColor: "#2B2442",
-                                  width: "200px",
-                                  marginLeft: "15px",
-                                  borderRadius: "5px",
-                                }}
-                              >
-                                Edit the profile
+                            <div className="col-sm-3 ml-auto">
+                              <button onClick={() => navigate(`/seeregistered/${jobProfile._id}`)}
+                                style={{ backgroundColor: '#2B2442', borderRadius: '5px' }}>
+                                See registered students
                               </button>
-                            </Link>
+                            </div>
+                            <div className="col-sm-3 ml-auto">
+                              <Link to={`/editpost/${jobProfile.id}`}>
+                                <button
+                                  variant="contained"
+                                  style={{
+                                    backgroundColor: "#2B2442",
+                                    // width: "200px",
+                                    // marginLeft: "15px",
+                                    borderRadius: "5px",
+                                  }}
+                                >
+                                  Edit the profile
+                                </button>
+                              </Link>
+                            </div>
                           </div>
                         </Typography>
                       </div>
