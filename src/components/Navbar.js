@@ -34,7 +34,7 @@ export default function TemporaryDrawer({ logoutHandler }) {
         <li key={index} className={item.cName}>
           <Link to={item.path} onClick={item.title === 'Logout' ? logoutHandler : undefined}>
             {item.icon}
-            <span>{item.title}</span>
+            <span style={{ marginLeft: '10px' }}>{item.title}</span>
           </Link>
         </li>
       ))}
