@@ -41,8 +41,8 @@ function RegStudentProfile() {
   }, [searchTerm, regStudentData]);
 
   return (
-    <Paper sx={{ py: 1, px: 3 }} className="container">
-      <Typography variant="h4" style={{ textAlign: "center", mt:2, mb:1 }}>
+    <Paper sx={{ py: 1, px: 3, pt: 3 }} className="container">
+      <Typography variant="h4" style={{ textAlign: "center" }}>
         Verified Students
       </Typography>
       <TextField
@@ -52,6 +52,7 @@ function RegStudentProfile() {
         margin="normal"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ mt: 3 }}
       />
 
       <div

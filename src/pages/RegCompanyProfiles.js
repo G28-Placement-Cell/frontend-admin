@@ -38,7 +38,7 @@ function RegCompanyProfile() {
   }, [searchTerm, regCompanyData]);
 
   return (
-    <Paper sx={{ py: 1, px: 3 }} className="container" >
+    <Paper sx={{ py: 1, px: 3, pt: 3 }} className="container" >
       <Typography variant="h4" style={{ textAlign: "center", mt: 2, mb: 1 }}>
         Verified Companies
       </Typography>
@@ -49,6 +49,7 @@ function RegCompanyProfile() {
         margin="normal"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ mt: 3 }}
       />
 
       <div

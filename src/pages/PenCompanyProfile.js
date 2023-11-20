@@ -38,8 +38,8 @@ function PenCompanyProfile() {
   }, [searchTerm, companyData]);
 
   return (
-    <Paper sx={{ py: 1, px: 3 }} className="container">
-      <Typography variant="h4" style={{ textAlign: "center", mt: 2, mb: 1 }}>
+    <Paper sx={{ py: 1, px: 3, pt: 3 }} className="container">
+      <Typography variant="h4" style={{ textAlign: "center" }}>
         Pending Companies
       </Typography>
       <TextField
@@ -49,6 +49,7 @@ function PenCompanyProfile() {
         margin="normal"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ mt: 3 }}
       />
 
       <div
