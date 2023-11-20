@@ -1,4 +1,5 @@
 import React from "react";
+import useEffect from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,7 +11,7 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
-const PendingCard = ({ student_company }) => {
+const PendingCard = ({ student_company, fetchData }) => {
   console.log(student_company)
 
   const [verify] = useVerifycompMutation();
@@ -23,13 +24,13 @@ const PendingCard = ({ student_company }) => {
       const res = await verify({ email: student_company.email }).unwrap();
       console.log(res);
       console.log("Accept");
+      fetchData(); // Fetch data after accepting
     }
     catch (err) {
       console.log(err);
       toast.error(err?.data?.message || err.error)
     }
   }
-
 
   const handleReject = async (e) => {
     e.preventDefault();
@@ -38,12 +39,13 @@ const PendingCard = ({ student_company }) => {
       const res = await reject({ email: student_company.email }).unwrap();
       console.log(res);
       console.log("reject");
+      fetchData(); // Fetch data after rejecting
     }
     catch (err) {
       console.log(err);
       toast.error(err?.data?.message || err.error)
     }
-  }
+  };
 
   const buttons = [
     <Button onClick={handleAccept} key="accept">Accept</Button>,

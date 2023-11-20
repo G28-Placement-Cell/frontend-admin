@@ -37,6 +37,26 @@ function PenCompanyProfile() {
     setFilteredData(filtered);
   }, [searchTerm, companyData]);
 
+  const fetchData = () => {
+    fetch("https://back-end-production-3140.up.railway.app/api/company/getpencompany", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCompanyData(data.company);
+        setLoading(false); // Set loading to false when data is loaded
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false); // Set loading to false in case of an error
+      });
+  };
+
   return (
     <Paper sx={{ py: 1, px: 3, pt: 3 }} className="container">
       <Typography variant="h4" style={{ textAlign: "center" }}>
@@ -68,7 +88,11 @@ function PenCompanyProfile() {
           </div>
         ) : (
           filteredData.map((company, index) => (
-            <PendingCard key={index} student_company={company} />
+            <PendingCard
+              key={index}
+              student_company={company}
+              fetchData={fetchData} // Pass the function as a prop
+            />
           ))
         )}
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style/studentprofile.css";
-import PendingCard from "../components/PendingCardStudent";
+import PendingCardStudent from "../components/PendingCardStudent";
 import { useVerifyMutation } from "../slices/adminApislice";
 import { Paper, Typography, TextField } from "@mui/material";
 
@@ -31,7 +31,6 @@ function StudentProfile() {
       });
   }, []);
 
-  console.log(studentData)
   useEffect(() => {
     // Filter the data based on the search term
     const filtered = studentData.filter((student) =>
@@ -40,6 +39,26 @@ function StudentProfile() {
     );
     setFilteredData(filtered);
   }, [searchTerm, studentData]);
+
+  const fetchData = () => {
+    fetch("https://back-end-production-3140.up.railway.app/api/student/getpenstudent", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setStudentData(data.penstudent);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
 
   return (
     <Paper sx={{ py: 1, px: 3, pt: 3 }} className="container">
@@ -68,7 +87,11 @@ function StudentProfile() {
           <p>Loading...</p>
         ) : filteredData && filteredData.length > 0 ? (
           filteredData.map((student, index) => (
-            <PendingCard key={index} student_company={student} />
+            <PendingCardStudent
+              key={index}
+              student_company={student}
+              fetchData={fetchData} // Pass the function as a prop
+            />
           ))
         ) : (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>

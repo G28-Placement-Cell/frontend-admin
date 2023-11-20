@@ -13,7 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 
-const PendingCard = ({ student_company }) => {
+const PendingCard = ({ student_company, fetchData }) => {
 
   const [verify] = useVerifyMutation();
   const [reject] = useRejectMutation();
@@ -21,27 +21,24 @@ const PendingCard = ({ student_company }) => {
   const handleAccept = async (e) => {
     e.preventDefault();
     try {
-      console.log(student_company.student_id)
       const res = await verify({ student_id: student_company.student_id }).unwrap();
       console.log(res);
       console.log("Accept");
-    }
-    catch (err) {
+      fetchData(); // Fetch data after accepting
+    } catch (err) {
       console.log(err);
       toast.error(err?.data?.message || err.error)
     }
   }
 
-
   const handleReject = async (e) => {
     e.preventDefault();
     try {
-      console.log(student_company.student_id)
       const res = await reject({ student_id: student_company.student_id }).unwrap();
       console.log(res);
       console.log("reject");
-    }
-    catch (err) {
+      fetchData(); // Fetch data after rejecting
+    } catch (err) {
       console.log(err);
       toast.error(err?.data?.message || err.error)
     }
