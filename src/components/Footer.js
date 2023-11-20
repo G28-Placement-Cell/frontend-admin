@@ -68,6 +68,17 @@ const Footer = () => {
                         <Typography variant="body2">
                             The Placement Cell at DA-IICT is a concept in its own form. It comprises the placement office, faculty members, and student representatives aiming at the smooth functioning of the placement process.
                         </Typography>
+                        <Divider sx={{ marginTop: '10px', marginBottom: '10px', backgroundColor: '#fff' }} />
+                        <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+                            {socialMediaLinks.map((link, index) => (
+                                <React.Fragment key={index}>
+                                    <Link href={link.url} target="_blank" rel="noopener noreferrer" sx={linkStyle}>
+                                        {link.icon}
+                                    </Link>
+                                    {index !== socialMediaLinks.length - 1 && <Divider orientation="vertical" flexItem style={{ backgroundColor: '#fff', marginLeft: '10px', marginRight: '10px' }} />}
+                                </React.Fragment>
+                            ))}
+                        </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
@@ -80,29 +91,18 @@ const Footer = () => {
                         <Typography variant="body2">
                             Dhirubhai Ambani Institute of Information and Communication Technology, Near Indroda Circle,
                             Gandhinagar - 382 007, Gujarat (India)
+                            {/* <br />
+                            <br /> */}
+                                    <Divider sx={{ marginTop: '10px', marginBottom: '10px', backgroundColor: '#fff' }} />
+                            Mr. Admin
                             <br />
-                            <br />
-                            Ms. Sneha Thakker:
-                            <br />
-                            <Link style={{ textDecoration: 'none', color: 'grey' }} href="mailto:placement@daiict.ac.in">placement@daiict.ac.in</Link>
-                            <br />
-                            <Link style={{ textDecoration: 'none', color: 'grey' }} href="mailto:sneha_thakker@daiict.ac.in">sneha_thakker@daiict.ac.in</Link>
+                            <Link style={{ textDecoration: 'none', color: 'grey' }} href="mailto:g28.placement@gmail.com">g28.placement@gmail.com</Link>
                             <br />
                             (O) +91 81600 04051
                             <br />
                             (M) +91 72650 68992
                         </Typography>
-                        <Divider sx={{ marginTop: '10px', marginBottom: '10px', backgroundColor: '#fff' }} />
-                        <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
-                            {socialMediaLinks.map((link, index) => (
-                                <React.Fragment key={index}>
-                                    <Link href={link.url} target="_blank" rel="noopener noreferrer" sx={linkStyle}>
-                                        {link.icon}
-                                    </Link>
-                                    {index !== socialMediaLinks.length - 1 && <Divider orientation="vertical" flexItem style={{ backgroundColor: '#fff', marginLeft: '10px', marginRight: '10px' }} />}
-                                </React.Fragment>
-                            ))}
-                        </Typography>
+
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                         <Typography variant="h6" gutterBottom>
