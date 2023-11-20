@@ -96,26 +96,28 @@ const AnnouncementSection = ({ title }) => {
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
-            Announcements for Students {title}:
-          </Typography>
-          <Autocomplete
-            disablePortal
-            id="search-announcement"
-            options={announcements.map((announcement) => announcement.title)}
-            value={searchInput}
-            onChange={(_, newValue) => handleSearch(newValue)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search title"
-                sx={{
-                  width: 350,
-                  margin: "10px auto",
-                }}
-              />
-            )}
-          />
+          <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
+            <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+              Announcements for Students {title}:
+            </Typography>
+            <Autocomplete
+              disablePortal
+              id="search-announcement"
+              options={announcements.map((announcement) => announcement.title)}
+              value={searchInput}
+              onChange={(_, newValue) => handleSearch(newValue)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search title"
+                  sx={{
+                    width: '100%',
+                    margin: "10px auto",
+                  }}
+                />
+              )}
+            />
+          </div>
         </div>
 
         {loading ? (

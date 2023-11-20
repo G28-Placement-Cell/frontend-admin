@@ -91,7 +91,7 @@ const AnnouncementSection = ({ title }) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <Paper sx={{ py: 1, px: 3 }} className="container1">
+      <Paper sx={{ py: 1, px: 3 }} className="container">
         {/* <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
           Announcements for Companies {title}:
         </Typography> */}
@@ -102,26 +102,28 @@ const AnnouncementSection = ({ title }) => {
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
-            Announcements for Companies {title}:
-          </Typography>
-          <Autocomplete
-            disablePortal
-            id="search-announcement"
-            options={filteredAnnouncements.map((announcement) => announcement.title)}
-            value={searchInput}
-            onChange={(_, newValue) => handleSearch(newValue)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search title"
-                sx={{
-                  width: 350,
-                  margin: "10px auto",
-                }}
-              />
-            )}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column', width:'100%' }}>
+            <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+              Announcements for Companies {title}:
+            </Typography>
+            <Autocomplete
+              disablePortal
+              id="search-announcement"
+              options={filteredAnnouncements.map((announcement) => announcement.title)}
+              value={searchInput}
+              onChange={(_, newValue) => handleSearch(newValue)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search title"
+                  sx={{
+                    width: '100%',
+                    margin: "10px auto",
+                  }}
+                />
+              )}
+            />
+          </div>
         </div>
 
         {loading ? (

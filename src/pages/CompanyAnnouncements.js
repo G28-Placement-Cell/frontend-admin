@@ -112,17 +112,20 @@ const AnnouncementSection = ({ title }) => {
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
-            Announcements Posted by companies {title}:
-          </Typography>
-          <TextField
-            label="Search"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
+            <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
+              Announcements Posted by companies {title}:
+            </Typography>
+            <TextField
+              label="Search"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              sx={{width:'100%'}}
+            />
+          </div>
         </div>
         {loading ? (
           <p>Loading...</p>
