@@ -172,16 +172,16 @@ const AnnouncementSection = ({ title }) => {
                           color="text.secondary"
                         >
                         <div className="col-sm-3 ml-auto">
-                        <IconButton
+                        {/* <IconButton
                                 onClick={() => handleDelete(announcement.id)}
                                 color="secondary"
-                                style={{ position: 'absolute', top: 10, left: 60 }} // Position delete icon to top right
+                                style={{ position: 'absolute', top: 10, left: 600 }} // Position delete icon to top right
                               >
                                 <DeleteIcon />
-                        </IconButton>
-                          {/* <button onClick={() => handleDelete(announcement._id)} style={{ backgroundColor: '#2B2442', borderRadius: '10px', padding: '10px 50px', textAlign: 'left'}}>
+                        </IconButton> */}
+                          <button onClick={() => handleDelete(announcement._id)} style={{ backgroundColor: '#2B2442', borderRadius: '10px', padding: '10px 50px', textAlign: 'left'}}>
                             Delete
-                          </button> */}
+                          </button>
                         </div>
                           {/* {new Date(announcement.date).toLocaleString()} */}
                         </Typography>
