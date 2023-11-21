@@ -246,7 +246,7 @@ const JobProfiles = () => {
                             </div>
                             <div className="col-sm-3 ml-auto">
                               <Link to={`/editpost/${jobProfile.id}`}>
-                                {<button
+                                {/* {<button
                                   variant="contained"
                                   style={{
                                     backgroundColor: "#2B2442",
@@ -256,7 +256,7 @@ const JobProfiles = () => {
                                   }}
                                 >
                                   Edit the profile
-                                </button>}
+                                </button>} */}
                               </Link>
                             </div>
                           </div>
