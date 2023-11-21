@@ -183,7 +183,7 @@ const AnnouncementSection = ({ title }) => {
                             Delete
                           </button> */}
                         </div>
-                          {new Date(announcement.date).toLocaleString()}
+                          {/* {new Date(announcement.date).toLocaleString()} */}
                         </Typography>
                       </div>
                     }
