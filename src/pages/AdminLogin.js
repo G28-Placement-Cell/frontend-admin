@@ -5,10 +5,8 @@ import Typography from '@mui/material/Typography';
 import admin from '../images/admin.png';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import AppBar from '@mui/material/AppBar/AppBar';
-import Toolbar from '@mui/material/Toolbar/Toolbar';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../slices/adminApislice';
 import { setCredentials } from '../slices/authslice';
 import { toast } from 'react-toastify';
@@ -56,26 +54,15 @@ function AdminLogin() {
 
     return (
         <>
-            {/* <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Placement Cell
-                    </Typography>
-                    <Button color="inherit" sx={{ mx: 1 }}>Login As</Button>
-                    <Button color="inherit" sx={{ mx: 1 }}>Contact us</Button>
-                    <Button color="inherit" sx={{ mx: 1 }}>About Us</Button>
-                </Toolbar>
-            </AppBar> */}
-            <Grid container >
-                {/* Left 60% - Image */}
-                <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} item xs={8}>
-                    <img src={admin} alt="Admin Image" style={{ width: '73%', height: '87%', alignItems: 'center' }} />
+            <Grid container>
+                <Grid item xs={12} md={6} lg={7}>
+                    {/* Left side - Image */}
+                    <img src={admin} alt="Admin Image" style={{ width: '100%', height: '100%' }} />
                 </Grid>
-
-                {/* Right 40% - Admin Input Area */}
-                <Grid item xs={4} component={Paper} elevation={3}>
+                <Grid item xs={12} md={6} lg={5} component={Paper} elevation={3}>
+                    {/* Right side - Admin Input Area */}
                     <div style={{ padding: '20px' }}>
-                        <Typography sx={heading} variant="h4" gutterBottom>
+                        <Typography variant="h4" gutterBottom>
                             Admin Login
                         </Typography>
                         {/* Admin login form */}
@@ -114,7 +101,7 @@ function AdminLogin() {
                         </form>
                     </div>
                 </Grid>
-            </Grid >
+            </Grid>
         </>
     );
 }
