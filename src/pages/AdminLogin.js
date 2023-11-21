@@ -53,56 +53,54 @@ function AdminLogin() {
     }
 
     return (
-        <>
-            <Grid container>
-                <Grid item xs={12} md={6} lg={7}>
-                    {/* Left side - Image */}
-                    <img src={admin} alt="Admin Image" style={{ width: '100%', height: '100%' }} />
-                </Grid>
-                <Grid item xs={12} md={6} lg={5} component={Paper} elevation={3}>
-                    {/* Right side - Admin Input Area */}
-                    <div style={{ padding: '20px' }}>
-                        <Typography variant="h4" gutterBottom>
-                            Admin Login
-                        </Typography>
-                        {/* Admin login form */}
-                        <form onSubmit={submitHandler}>
-                            <TextField
-                                label="Email"
-                                id="email"
-                                name="email"
-                                type="email"
-                                variant="outlined"
-                                fullWidth
-                                required
-                                style={inputStyles}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <TextField
-                                label="Password"
-                                id="password"
-                                name="password"
-                                type="password"
-                                variant="outlined"
-                                fullWidth
-                                required
-                                style={inputStyles}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', padding: '10px' }}>
-                                {/* Submit button */}
-                                <Button type="submit" variant="contained" color="primary" sx={{ width: '70px' }}>
-                                    Login
-                                </Button>
-
-                                {/* Forgot Password link */}
-                                <a href="/forgotpassword" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
-                            </div>
-                        </form>
-                    </div>
-                </Grid>
+        <Grid container>
+            <Grid item xs={12} md={6} lg={7} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {/* Left side - Image */}
+                <img src={admin} alt="Admin Image" style={{ width: '80%', height: '80%' }} />
             </Grid>
-        </>
+            <Grid item xs={12} md={6} lg={5} component={Paper} elevation={3}>
+                {/* Right side - Admin Input Area */}
+                <div style={{ padding: '20px' }}>
+                    <Typography style={heading} variant="h4" gutterBottom>
+                        Admin Login
+                    </Typography>
+                    {/* Admin login form */}
+                    <form onSubmit={submitHandler}>
+                        <TextField
+                            label="Email"
+                            id="email"
+                            name="email"
+                            type="email"
+                            variant="outlined"
+                            fullWidth
+                            required
+                            style={inputStyles}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <TextField
+                            label="Password"
+                            id="password"
+                            name="password"
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            required
+                            style={inputStyles}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px', padding: '10px' }}>
+                            {/* Submit button */}
+                            <Button type="submit" variant="contained" color="primary" sx={{ width: '70px' }}>
+                                Login
+                            </Button>
+
+                            {/* Forgot Password link */}
+                            <a href="/forgotpassword" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </Grid>
+        </Grid>
     );
 }
 
