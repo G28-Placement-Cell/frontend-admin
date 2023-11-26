@@ -100,7 +100,7 @@ const AddAnnouncement = () => {
                     required
                 />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button type="submit" variant="contained" color="primary" sx={{ my: 2, width: '15vw' }}>
+                    <Button type="submit" variant="contained" color="primary" sx={{ my: 2, width: '200px' }}>
                         Post Announcement
                     </Button>
                 </div>

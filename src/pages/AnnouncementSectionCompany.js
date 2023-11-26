@@ -30,6 +30,7 @@ const AnnouncementSection = ({ title }) => {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
+        "authorization": `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
@@ -92,9 +93,6 @@ const AnnouncementSection = ({ title }) => {
   return (
     <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
-        {/* <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
-          Announcements for Companies {title}:
-        </Typography> */}
         <div
           style={{
             display: "flex",
@@ -102,7 +100,7 @@ const AnnouncementSection = ({ title }) => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', width:'100%' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
               Announcements for Companies {title}:
             </Typography>

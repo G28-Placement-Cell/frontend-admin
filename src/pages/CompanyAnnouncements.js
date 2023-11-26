@@ -27,6 +27,7 @@ const AnnouncementSection = ({ title }) => {
         method: "GET",
         headers: {
           "content-type": "application/json",
+          "authorization": `Bearer ${localStorage.getItem("token")}`,
         },
       }
     )
@@ -112,7 +113,7 @@ const AnnouncementSection = ({ title }) => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
               Announcements Posted by companies {title}:
             </Typography>
@@ -123,7 +124,7 @@ const AnnouncementSection = ({ title }) => {
               margin="normal"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              sx={{width:'100%'}}
+              sx={{ width: '100%' }}
             />
           </div>
         </div>

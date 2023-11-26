@@ -32,6 +32,7 @@ const AnnouncementSection = ({ title }) => {
       method: "GET",
       headers: {
         "content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
@@ -73,8 +74,8 @@ const AnnouncementSection = ({ title }) => {
           "content-type": "application/json",
         },
       });
-      
-      console.log("Delete Respone: ",res);
+
+      console.log("Delete Respone: ", res);
       if (res.ok) {
         setAnnouncements((prevAnnouncements) =>
           prevAnnouncements.filter((prevAnnouncement) => prevAnnouncement._id !== announcementId)
@@ -86,8 +87,8 @@ const AnnouncementSection = ({ title }) => {
       console.error(err);
     }
   };
-  
-  
+
+
 
   const handleSubmitAnnouncement = () => {
     if (announcementText.trim() !== "") {
@@ -112,7 +113,7 @@ const AnnouncementSection = ({ title }) => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: 'relative' }}>
       <Paper sx={{ py: 1, px: 3 }} className="container">
         <div
           style={{
@@ -121,14 +122,14 @@ const AnnouncementSection = ({ title }) => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{display:'flex', flexDirection:'column', width:'100%'}}>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant="h5" sx={{ pt: 1, pb: 1 }}>
               Announcements for Students {title}:
             </Typography>
             <Autocomplete
               disablePortal
               id="search-announcement"
-              options={announcements.map((announcement) => announcement.title)}
+              options={filteredAnnouncements.map((announcement) => announcement.title)}
               value={searchInput}
               onChange={(_, newValue) => handleSearch(newValue)}
               renderInput={(params) => (
@@ -163,32 +164,9 @@ const AnnouncementSection = ({ title }) => {
                         }}
                       >
                         <Typography>{announcement.title}</Typography>
-                        <Typography
-                          sx={{
-                            fontSize: 12,
-                            fontStyle: "italic",
-                            // textAlign: "centre",
-                          }}
-                          color="text.secondary"
-                        >
-                        <div className="col-sm-3 ml-auto">
-                        <IconButton
-                                onClick={() => handleDelete(announcement.id)}
-                                color="secondary"
-                                style={{ position: 'absolute', top: 10, left: 600 }} // Position delete icon to top right
-                              >
-                                <DeleteIcon />
-                        </IconButton>
-                          {/* <button onClick={() => handleDelete(announcement._id)} style={{ backgroundColor: '#2B2442', borderRadius: '10px', padding: '10px 50px', textAlign: 'left'}}>
-                            Delete
-                          </button> */}
-                        </div>
-                          {/* {new Date(announcement.date).toLocaleString()} */}
-                        </Typography>
                       </div>
                     }
                     secondary={
-                      
                       <div>
                         <Typography>{announcement.description}</Typography>
                         <Typography
@@ -199,11 +177,6 @@ const AnnouncementSection = ({ title }) => {
                           }}
                           color="text.secondary"
                         >
-                        {/* <div className="col-sm-3 ml-auto">
-                          <button onClick={() => handleDelete(announcement._id)} style={{ backgroundColor: '#2B2442', borderRadius: '5px' }}>
-                            Delete
-                          </button>
-                        </div> */}
                           {new Date(announcement.date).toLocaleString()}
                         </Typography>
                       </div>
@@ -234,8 +207,8 @@ const AnnouncementSection = ({ title }) => {
       <Fab
         color="primary"
         aria-label="add"
-        sx={{ position: "fixed", bottom: 60, right: 20 }}
-        onClick={() => navigate("/addAnnouncementStudent")}
+        sx={{ position: 'fixed', bottom: 60, right: 20 }}
+        onClick={() => navigate('/addAnnouncementCompany')}
       >
         <AddIcon />
       </Fab>
