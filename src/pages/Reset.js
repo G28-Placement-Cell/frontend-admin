@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useReset_passwordMutation, useReset_applyMutation } from '../slices/adminApislice';
 import { removeReset } from "../slices/authslice";
+import { Button } from '@mui/material';
+
 function validatePassword(password) {
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return passwordPattern.test(password);
@@ -77,7 +79,7 @@ function ResetPassword() {
               // value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <button type="submit">Reset Password</button>
+            <Button sx={{ mt: 2 }} variant="contained" type="submit">Reset Password</Button>
             {message && <p className="message">{message}</p>}
           </div>
         </form>
