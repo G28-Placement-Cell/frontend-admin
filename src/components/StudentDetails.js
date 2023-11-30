@@ -2,7 +2,7 @@ import React from 'react';
 import '../style/studentprofile.css';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import CloudDownloadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -49,7 +49,7 @@ function PendingStudent() {
     //   },
     // });
     // console.log(res);
-    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/${fileid}`);
+    window.open(`https://back-end-production-3140.up.railway.app/api/student/files/resume/${fileid}`);
   }
 
   if (!student_company) return <>loading</>
@@ -247,9 +247,12 @@ function PendingStudent() {
                 <hr />
                 <div className="row">
                   <div className="col-sm-12">
-                    <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudUploadIcon />}>
+                    <Button disabled={!student_company?.resume} sx={{ width: 150, mr: 5, backgroundColor: "#2B2442", my: 1 }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudDownloadIcon />} >
                       Download Resume
                     </Button>
+                    {/* <Button sx={{ width: 150, mr: 5, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" onClick={handleclick} variant="contained" startIcon={<CloudUploadIcon />}>
+                      Download Resume
+                    </Button> */}
                     {/* <Button href='/updateresume' sx={{ width: 150, backgroundColor: "#2B2442" }} id="resume" required={true} component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                       Upload Resume
                       <VisuallyHiddenInput type="file" />
