@@ -8,9 +8,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
-import SelDeselButton from '../components/SelDeselButton';
+import { Button, Fab } from '@mui/material';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+// import SelDeselButton from '../../Components/SelDeselButton';
+import { Add as AddIcon } from "@mui/icons-material";
 // import 'react-data-grid/lib/styles.css';
 
 
@@ -37,14 +38,39 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export const Tablet = () => {
+function SeeRegeisterd() {
   const jobId = useParams()?.id;
+  const handleExcel = async () => {
+    window.open(`https://back-end-production-3140.up.railway.app/api/jobprofile/regstudent/${jobId}`);
+    // window.open(`http://localhost:8000/api/jobprofile/regstudent/${jobId}`);
+  }
   // console.log(jobId);
 
   const [regStudents, setRegStudents] = useState([]);
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState([]);
+  const [regStudentData, setRegStudentData] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetch("https://back-end-production-3140.up.railway.app/api/student/getregstudent", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setRegStudentData(data.regstudent);
+        setLoading(false); // Set loading to false when data is loaded
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false); // Set loading to false in case of an error
+      });
+  }, []);
 
   useEffect(() => {
     fetch(`https://back-end-production-3140.up.railway.app/api/jobprofile/${jobId}`, {
@@ -62,7 +88,7 @@ export const Tablet = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
   }, [jobId]);
@@ -129,7 +155,7 @@ export const Tablet = () => {
             {studentsExist && students.map((row, index) => (
               <StyledTableRow className="mt-10 py-10" key={index}>
                 <StyledTableCell align="left">{row?.student_id}</StyledTableCell>
-                <StyledTableCell align="left">{row?.name} {row?.surname}</StyledTableCell>
+                <StyledTableCell align="left" onClick={() => navigate(`/profile/${row._id}`)} style={{ cursor: 'pointer' }}>{row?.name} {row?.surname}</StyledTableCell>
                 <StyledTableCell align="left">{row?.cpi}</StyledTableCell>
                 <StyledTableCell align="right">
                   <Button
@@ -161,8 +187,16 @@ export const Tablet = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button
+        color="primary"
+        aria-label="add"
+        sx={{ position: "fixed", bottom: 60, right: 20, width: '150px', backgroundColor: "#2B2442", color: "white", "&:hover": { backgroundColor: "#493D72", color: "white", } }}
+        onClick={handleExcel}
+      >
+        Download Excel
+      </Button>
     </>
   );
 };
 
-export default Tablet;
+export default SeeRegeisterd;
