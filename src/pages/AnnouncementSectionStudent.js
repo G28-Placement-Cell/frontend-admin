@@ -208,7 +208,7 @@ const AnnouncementSection = ({ title }) => {
         color="primary"
         aria-label="add"
         sx={{ position: 'fixed', bottom: 60, right: 20 }}
-        onClick={() => navigate('/addAnnouncementCompany')}
+        onClick={() => navigate('/addAnnouncementStudent')}
       >
         <AddIcon />
       </Fab>
